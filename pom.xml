@@ -95,6 +95,27 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.26.0</version>
+				<configuration>
+					<failurePriority>1</failurePriority>
+					<failOnViolation>true</failOnViolation>
+					<rulesets>
+						<ruleset>conf/pmd-rules.xml</ruleset>
+					</rulesets>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
