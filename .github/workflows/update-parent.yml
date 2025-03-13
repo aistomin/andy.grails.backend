@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       ${{ github.event.workflow_run.conclusion == 'success' }} &&
-      ${{ github.event.workflow_run.workflow_ref == 'refs/heads/master' }} &&
-      ${{ github.event_name == 'push' }}  # Ensure it's a push event, not a PR
+      ${{ github.event_name == 'workflow_run' }} &&  # Ensures this is a workflow run event
+      ${{ github.ref == 'refs/heads/master' }} &&    # Ensures this is a push to master
+      ${{ github.event.workflow_run.head_branch == 'master' }}  # Ensures the push was to master
     steps:
       - name: Print Hello World
         run: echo "Hello World"
