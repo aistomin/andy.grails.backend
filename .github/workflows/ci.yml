@@ -26,6 +26,6 @@ jobs:
       - name: Trigger parent repo to update submodule
         run: |
           curl -X POST https://api.github.com/repos/aistomin/andy.grails/dispatches \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{"event_type": "update_backend_rev", "client_payload": {"ref": "refs/heads/master"}}'
