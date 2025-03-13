@@ -20,10 +20,31 @@ jobs:
       - name: Build with Maven
         run: mvn clean install package
 
-  hello_world:
+  update_parent_repo:
     runs-on: ubuntu-latest
     needs: build  # Ensure this runs only after the 'build' job is successful
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Only run on direct pushes to master
     steps:
-      - name: Print Hello World
-        run: echo "Hello World"
+      - name: Checkout the parent repository
+        uses: actions/checkout@v4
+        with:
+          repository: aistomin/andy.grails  # The parent repo
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token to authenticate
+
+      - name: Update submodule reference
+        run: |
+          # Initialize and update the submodule in the parent repo
+          git submodule update --init --recursive
+          
+          # Make sure the submodule reference is up-to-date
+          git submodule update --remote
+          
+          # Check if there are any changes in the submodule
+          git diff --exit-code || echo "Submodule updated"
+          
+          # Commit the changes if any
+          git commit -am "Update submodule reference for andy.grails.backend"
+          git push origin master
+
+      - name: Print success message
+        run: echo "Submodule updated and pushed successfully!"
