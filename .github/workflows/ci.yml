@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [ "master" ]  # Trigger only on direct pushes to master
-  pull_request:
-    branches: [ "master" ]  # Trigger for PRs to master (for testing)
 
 jobs:
   build:
@@ -25,26 +23,9 @@ jobs:
     needs: build  # Ensure this runs only after the 'build' job is successful
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Only run on direct pushes to master
     steps:
-      - name: Checkout the parent repository
-        uses: actions/checkout@v4
-        with:
-          repository: aistomin/andy.grails  # The parent repo
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token to authenticate
-
-      - name: Update submodule reference
+      - name: Trigger parent repo to update submodule
         run: |
-          # Initialize and update the submodule in the parent repo
-          git submodule update --init --recursive
-          
-          # Make sure the submodule reference is up-to-date
-          git submodule update --remote
-          
-          # Check if there are any changes in the submodule
-          git diff --exit-code || echo "Submodule updated"
-          
-          # Commit the changes if any
-          git commit -am "Update submodule reference for andy.grails.backend"
-          git push origin master
-
-      - name: Print success message
-        run: echo "Submodule updated and pushed successfully!"
+          curl -X POST https://api.github.com/repos/aistomin/andy.grails/dispatches \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"event_type": "update_backend_rev", "client_payload": {"ref": "refs/heads/master"}}'
