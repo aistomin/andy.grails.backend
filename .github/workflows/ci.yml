@@ -2,20 +2,28 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ]  # Trigger only on direct pushes to master
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master" ]  # Trigger for PRs to master (for testing)
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn clean install package
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn clean install package
+
+  hello_world:
+    runs-on: ubuntu-latest
+    needs: build  # Ensure this runs only after the 'build' job is successful
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Only run on direct pushes to master
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World"
