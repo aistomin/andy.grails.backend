@@ -32,11 +32,10 @@ jobs:
           -d '{
             "event_type": "update_backend_rev", 
             "client_payload": {
-              "brev": "${{ github.sha }}",  # Pass the commit hash from the environment
+              "commit_hash": "${{ github.sha }}",  # Pass the commit hash from the environment
               "ref": "refs/heads/master"
             }
           }')
-
           HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)  # Get the last line, which is the HTTP response code
           if [ "$HTTP_CODE" -ne 200 ]; then
             echo "Error: Received HTTP status code $HTTP_CODE from GitHub API: $RESPONSE"
