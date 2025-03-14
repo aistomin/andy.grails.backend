@@ -25,6 +25,7 @@ jobs:
     steps:
       - name: Trigger parent repo to update submodule
         run: |
+          set -e  # Fail the job if any command fails
           curl -X POST https://api.github.com/repos/aistomin/andy.grails/dispatches \
           -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
