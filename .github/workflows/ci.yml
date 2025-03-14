@@ -26,7 +26,7 @@ jobs:
       - name: Trigger parent repo to update submodule
         run: |
           set -e  # Fail the job if any command fails
-          curl -X POST https://api.github.com/repos/aistomin/andy.grails/dispatches \
+          RESPONSE=$(curl -w "%{http_code}" -X POST https://api.github.com/repos/aistomin/andy.grails/dispatches \
           -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{
@@ -35,4 +35,10 @@ jobs:
               "brev": "${{ github.sha }}",  # Pass the commit hash from the environment
               "ref": "refs/heads/master"
             }
-          }'
+          }')
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)  # Get the last line, which is the HTTP response code
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "Error: Received HTTP status code $HTTP_CODE from GitHub API"
+            exit 1  # Force the job to fail
+          fi
