@@ -23,12 +23,6 @@ jobs:
     needs: build  # Ensure this runs only after the 'build' job is successful
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Only run on direct pushes to master
     steps:
-      - name: Capture commit hash
-        run: |
-          COMMIT_HASH=$(git rev-parse HEAD)  # Get the commit hash of the current child repo commit
-          echo "Commit hash: $COMMIT_HASH"
-          echo "COMMIT_HASH=${COMMIT_HASH}" >> $GITHUB_ENV  # Save it as an environment variable
-
       - name: Trigger parent repo to update submodule
         run: |
           curl -X POST https://api.github.com/repos/aistomin/andy.grails/dispatches \
@@ -37,7 +31,7 @@ jobs:
           -d '{
             "event_type": "update_backend_rev", 
             "client_payload": {
-              "brev": "${{ env.COMMIT_HASH }}",  # Pass the commit hash from the environment
+              "brev": "${{ github.sha }}",  # Pass the commit hash from the environment
               "ref": "refs/heads/master"
             }
           }'
