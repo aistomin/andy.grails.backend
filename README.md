@@ -5,3 +5,5 @@
 ## How to test and run the app?
 
 To test the app run: `mvn clean install package`
+
+To start the application run: `mvn spring-boot:run`

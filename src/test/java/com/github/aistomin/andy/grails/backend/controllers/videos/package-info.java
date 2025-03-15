@@ -13,23 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.andy.grails.backend;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * Tests for {@link Application}.
+ * Tests that belong to Videos feature.
  */
-@SpringBootTest
-class ApplicationTests {
-
-    /**
-     * Dummy test.
-     */
-    @Test
-    void contextLoads() {
-        Assertions.assertEquals(2, 1 + 1);
-    }
-}
+package com.github.aistomin.andy.grails.backend.controllers.videos;
