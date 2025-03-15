@@ -20,8 +20,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Test for {@link VideosController}.
@@ -45,12 +46,17 @@ class VideosControllerTest {
      */
     @Test
     void testListVideos() {
-        final var videos = (List<Map>) this.template
-            .getForEntity("/videos", List.class).getBody();
+        final var response = template.exchange(
+            "/videos",
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<List<VideoDto>>() { }
+        );
+        final var videos = response.getBody();
         Assertions.assertEquals(9, videos.size());
         Assertions.assertEquals(
             "Klaus Schindler - Zeit für Träume // Andrej Istomin",
-            videos.get(0).get("title")
+            videos.get(0).getTitle()
         );
     }
 }
