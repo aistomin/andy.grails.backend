@@ -20,16 +20,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 /**
  * Servlet initialiser.
- *
- * @todo: Issue #3. Remove the checkstyle warning suppression.
  */
-@SuppressWarnings("checkstyle:FileTabCharacter")
 public final class ServletInitializer extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(
-		final SpringApplicationBuilder builder
-	) {
-		return super.configure(builder);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(
+        final SpringApplicationBuilder builder
+    ) {
+        return super.configure(builder);
+    }
 }
