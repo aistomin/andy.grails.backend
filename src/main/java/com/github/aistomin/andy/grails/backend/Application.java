@@ -20,12 +20,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Main application class.
- *
- * @todo: Issue #3. Remove the checkstyle warning suppression.
  */
-@SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 @SpringBootApplication
 public class Application {
+
+    /**
+     * Ctor.
+     */
+    protected Application() {
+    }
 
     /**
      * The application's entry point.
