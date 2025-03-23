@@ -19,6 +19,11 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn clean install package
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: aistomin/andy.grails.backend
 
   update_parent_repo:
     runs-on: ubuntu-latest
