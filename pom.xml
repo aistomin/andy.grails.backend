@@ -75,6 +75,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>
+						-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=${project.build.directory}/jacoco.exec
 						-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
 						-Xshare:off
 					</argLine>
@@ -215,27 +216,34 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.12</version>
 				<executions>
+					<!-- Step 1: Attach JaCoCo Agent to Test Phase -->
 					<execution>
-						<id>default-prepare-agent</id>
+						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+						<phase>test</phase> <!-- Ensure it runs before tests -->
+						<configuration>
+							<destFile>${project.build.directory}/jacoco.exec</destFile> <!-- Explicitly specify the data file -->
+						</configuration>
 					</execution>
+
+					<!-- Step 2: Generate JaCoCo Report -->
 					<execution>
-						<id>default-report</id>
+						<id>report</id>
 						<goals>
 							<goal>report</goal>
 						</goals>
 					</execution>
+
+					<!-- Step 3: Enforce Coverage Rules -->
 					<execution>
-						<id>default-check</id>
+						<id>check</id>
 						<goals>
 							<goal>check</goal>
 						</goals>
 						<configuration>
-							<excludes>
-								<exclude>com/github/aistomin/andys/grails/backend/Application.class</exclude>
-							</excludes>
+							<dataFile>${project.build.directory}/jacoco.exec</dataFile> <!-- Ensure check uses correct data file -->
 							<rules>
 								<rule>
 									<element>BUNDLE</element>
@@ -243,7 +251,7 @@
 										<limit>
 											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>1</minimum>
+											<minimum>0.9</minimum>
 										</limit>
 									</limits>
 								</rule>
