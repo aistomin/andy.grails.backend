@@ -1,0 +1,8 @@
+status:
+  project:
+    default:
+      target: 90%
+ignore:
+  - "src/main/java/org/**/*"
+codecov:
+  token: ffee942f-4038-42bf-9ffb-8aef90ff62a6
