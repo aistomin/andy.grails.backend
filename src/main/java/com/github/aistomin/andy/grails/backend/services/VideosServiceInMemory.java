@@ -17,10 +17,11 @@ package com.github.aistomin.andy.grails.backend.services;
 
 import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,21 +44,20 @@ public final class VideosServiceInMemory implements VideosService {
     private static final List<VideoDto> STORAGE = new ArrayList<>();
 
     static {
+        final var zone = ZoneId.systemDefault();
         STORAGE.add(new VideoDto(
             null,
             "Klaus Schindler - Zeit für Träume // Andrej Istomin",
             "The photos in this video were taken by my wife(checkout her channel, by the way:  https://www.youtube.com/channel/UC810...) in Landkreis Dachau(mostly in Schwabhausen and Altomünster). The lovely place where I live.",
             "https://www.youtube.com/watch?v=lLe-HB1WLO4",
             "lLe-HB1WLO4",
-            Date.from(
-                LocalDate.of(2017, 8, 20)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.AUGUST, 20, 10, 5),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2017, 8, 20)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.AUGUST, 20, 12, 45),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -66,15 +66,13 @@ public final class VideosServiceInMemory implements VideosService {
             "The melody composed and performed by Andrej Istomin except those telephone sounds.",
             "https://www.youtube.com/watch?v=j_Ve3uiVsaA",
             "j_Ve3uiVsaA",
-            Date.from(
-                LocalDate.of(2017, 8, 21)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.AUGUST, 21, 15, 35),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2017, 8, 21)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.AUGUST, 21, 18, 12),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -83,15 +81,13 @@ public final class VideosServiceInMemory implements VideosService {
             "A little bit of an autumn mood :) Music piece is composed by Mauro Giuliani, called \"Sonatina op71 n°1\". The pictures in slide-show are the reproductions of different Russian painters.",
             "https://www.youtube.com/watch?v=DIEBQxqY1yU",
             "DIEBQxqY1yU",
-            Date.from(
-                LocalDate.of(2017, 11, 11)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.NOVEMBER, 11, 9, 28),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2017, 11, 11)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.NOVEMBER, 11, 18, 30),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -100,15 +96,13 @@ public final class VideosServiceInMemory implements VideosService {
             "The piece is composed by Ritchie Blackmore.",
             "https://www.youtube.com/watch?v=iTVHH1vMIcI",
             "iTVHH1vMIcI",
-            Date.from(
-                LocalDate.of(2017, 11, 13)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.NOVEMBER, 13, 12, 14),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2017, 11, 13)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.NOVEMBER, 13, 15, 56),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -117,15 +111,13 @@ public final class VideosServiceInMemory implements VideosService {
             "This time I'm playing \"Andante\" by Fernando Sor. It is the very first time when I try to create a real video instead of slide show which I did for my previous videos. I hope you like it :)",
             "https://www.youtube.com/watch?v=kbd7a7j0VOE",
             "kbd7a7j0VOE",
-            Date.from(
-                LocalDate.of(2017, 12, 15)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.DECEMBER, 15, 10, 33),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2017, 12, 15)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2017,  Month.DECEMBER, 15, 16, 42),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -134,15 +126,13 @@ public final class VideosServiceInMemory implements VideosService {
             "Today I'd like to show you my attempt to play instrumental version of the traditional English song \"Greensleeves\".",
             "https://www.youtube.com/watch?v=DDt7N5KxXrM",
             "DDt7N5KxXrM",
-            Date.from(
-                LocalDate.of(2019, 5, 30)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2019,  Month.MAY, 28, 10, 33),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2019, 5, 30)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2019,  Month.MAY, 31, 16, 42),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -151,15 +141,13 @@ public final class VideosServiceInMemory implements VideosService {
             "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
             "https://www.youtube.com/watch?v=Hd05dNHYqAw",
             "Hd05dNHYqAw",
-            Date.from(
-                LocalDate.of(2019, 7, 9)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2019,  Month.JULY, 7, 11, 33),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2019, 7, 9)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2019,  Month.JULY, 9, 16, 22),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -168,15 +156,13 @@ public final class VideosServiceInMemory implements VideosService {
             "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
             "https://www.youtube.com/watch?v=hRvXB_gnR84",
             "hRvXB_gnR84",
-            Date.from(
-                LocalDate.of(2020, 6, 13)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2020,  Month.JUNE, 13, 11, 33),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2020, 6, 13)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2020,  Month.JUNE, 13, 16, 22),
+                zone
             )
         ));
         STORAGE.add(new VideoDto(
@@ -185,15 +171,13 @@ public final class VideosServiceInMemory implements VideosService {
             "Thanks for watching this video. If you like it, please subscribe to my channel, comment the videos, \"like\" them and share with your friends.",
             "https://www.youtube.com/watch?v=AjQBAQ1jzwc",
             "AjQBAQ1jzwc",
-            Date.from(
-                LocalDate.of(2021, 4, 9)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2020,  Month.APRIL, 9, 0, 1),
+                zone
             ),
-            Date.from(
-                LocalDate.of(2021, 4, 9)
-                    .atStartOfDay()
-                    .toInstant(ZoneOffset.UTC)
+            ZonedDateTime.of(
+                LocalDateTime.of(2020,  Month.APRIL, 9, 11, 5),
+                zone
             )
         ));
     }

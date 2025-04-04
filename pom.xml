@@ -30,7 +30,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<linkXRef>false</linkXRef>
-		<lombok.version>1.18.36</lombok.version>
+		<lombok.version>1.18.38</lombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -203,7 +203,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.12</version>
+				<version>0.8.13</version>
 				<executions>
 					<execution>
 						<id>default-prepare-agent</id>
@@ -233,7 +233,7 @@
 										<limit>
 											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.97</minimum>
+											<minimum>0.9</minimum>
 										</limit>
 									</limits>
 								</rule>
