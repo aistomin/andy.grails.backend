@@ -20,7 +20,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * Video DTO.
@@ -62,10 +62,10 @@ public final class VideoDto {
     /**
      * The date when the video was created.
      */
-    private Date createdOn;
+    private ZonedDateTime createdOn;
 
     /**
      * The date when the video was published.
      */
-    private Date publishedOn;
+    private ZonedDateTime publishedOn;
 }
