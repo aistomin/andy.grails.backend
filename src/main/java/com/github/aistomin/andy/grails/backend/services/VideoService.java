@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @since 0.1
  */
-public interface VideosService {
+public interface VideoService {
 
     /**
      * Load videos.
