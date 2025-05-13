@@ -15,7 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.videos;
 
-import com.github.aistomin.andy.grails.backend.services.VideosService;
+import com.github.aistomin.andy.grails.backend.services.VideoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,19 +28,19 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/videos")
-public final class VideosController {
+public final class VideoController {
 
     /**
      * Video service.
      */
-    private final VideosService videos;
+    private final VideoService videos;
 
     /**
      * Ctor.
      *
      * @param service Video service.
      */
-    public VideosController(final VideosService service) {
+    public VideoController(final VideoService service) {
         this.videos = service;
     }
 

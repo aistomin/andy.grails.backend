@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Temporary implementation of the {@link VideosService}. For now, we just work
+ * Temporary implementation of the {@link VideoService}. For now, we just work
  * with some hardcoded values that we store in the static variable.
  *
  * @since 0.1
@@ -36,7 +36,7 @@ import java.util.List;
     "checkstyle:MethodLength"
 })
 @Service
-public final class VideosServiceInMemory implements VideosService {
+public final class VideoServiceInMemory implements VideoService {
 
     /**
      * Storage.

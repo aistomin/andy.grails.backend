@@ -25,7 +25,7 @@ import org.springframework.http.HttpMethod;
 import java.util.List;
 
 /**
- * Test for {@link VideosController}.
+ * Test for {@link VideoController}.
  *
  * @since 0.1
  */
@@ -33,7 +33,7 @@ import java.util.List;
     "checkstyle:MagicNumber",
 })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class VideosControllerTest {
+class VideoControllerTest {
 
     /**
      * Test REST template.
