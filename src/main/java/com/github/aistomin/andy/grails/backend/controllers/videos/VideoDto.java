@@ -62,10 +62,10 @@ public final class VideoDto {
     /**
      * The date when the video was created.
      */
-    private ZonedDateTime createdOn;
+    private ZonedDateTime createdAt;
 
     /**
      * The date when the video was published.
      */
-    private ZonedDateTime publishedOn;
+    private ZonedDateTime publishedAt;
 }
