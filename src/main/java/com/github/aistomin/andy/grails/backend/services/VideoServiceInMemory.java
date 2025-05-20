@@ -46,7 +46,7 @@ public final class VideoServiceInMemory implements VideoService {
     static {
         final var zone = ZoneId.systemDefault();
         STORAGE.add(new VideoDto(
-            null,
+            0L,
             "Klaus Schindler - Zeit für Träume // Andrej Istomin",
             "The photos in this video were taken by my wife(checkout her channel, by the way:  https://www.youtube.com/channel/UC810...) in Landkreis Dachau(mostly in Schwabhausen and Altomünster). The lovely place where I live.",
             "https://www.youtube.com/watch?v=lLe-HB1WLO4",
@@ -61,7 +61,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            1L,
             "Andrej Istomin - Jenny",
             "The melody composed and performed by Andrej Istomin except those telephone sounds.",
             "https://www.youtube.com/watch?v=j_Ve3uiVsaA",
@@ -76,7 +76,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            2L,
             "Mauro Giuliani - Sonatina op. 71 no. 1 // Andrej Istomin",
             "A little bit of an autumn mood :) Music piece is composed by Mauro Giuliani, called \"Sonatina op71 n°1\". The pictures in slide-show are the reproductions of different Russian painters.",
             "https://www.youtube.com/watch?v=DIEBQxqY1yU",
@@ -91,7 +91,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            3L,
             "Blackmore's Night - Minstrel Hall // Andrej Istomin",
             "The piece is composed by Ritchie Blackmore.",
             "https://www.youtube.com/watch?v=iTVHH1vMIcI",
@@ -106,7 +106,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            4L,
             "Fernando Sor - Andante // Andrej Istomin",
             "This time I'm playing \"Andante\" by Fernando Sor. It is the very first time when I try to create a real video instead of slide show which I did for my previous videos. I hope you like it :)",
             "https://www.youtube.com/watch?v=kbd7a7j0VOE",
@@ -121,7 +121,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            5L,
             "Greensleeves(English traditional) // Andrej Istomin",
             "Today I'd like to show you my attempt to play instrumental version of the traditional English song \"Greensleeves\".",
             "https://www.youtube.com/watch?v=DDt7N5KxXrM",
@@ -136,7 +136,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            6L,
             "Ferdinando Carulli - Andantino // Andrej Istomin",
             "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
             "https://www.youtube.com/watch?v=Hd05dNHYqAw",
@@ -151,8 +151,8 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
-            "Johann Pachelbel - Sarabande (Guitar + Recorder) // Andrej Istomin",
+            7L,
+            "Johann Pachelbel - Sarabande // Andrej Istomin",
             "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
             "https://www.youtube.com/watch?v=hRvXB_gnR84",
             "hRvXB_gnR84",
@@ -166,7 +166,7 @@ public final class VideoServiceInMemory implements VideoService {
             )
         ));
         STORAGE.add(new VideoDto(
-            null,
+            8L,
             "J. S. Bach - Bourrée // Andrej Istomin",
             "Thanks for watching this video. If you like it, please subscribe to my channel, comment the videos, \"like\" them and share with your friends.",
             "https://www.youtube.com/watch?v=AjQBAQ1jzwc",
@@ -185,5 +185,13 @@ public final class VideoServiceInMemory implements VideoService {
     @Override
     public List<VideoDto> list() {
         return STORAGE;
+    }
+
+    @Override
+    public VideoDto findById(final long id) {
+        return STORAGE.stream()
+            .filter(video -> video.getId() == id)
+            .findFirst()
+            .orElse(null);
     }
 }

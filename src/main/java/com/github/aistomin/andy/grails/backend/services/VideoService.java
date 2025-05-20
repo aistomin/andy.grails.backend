@@ -31,4 +31,12 @@ public interface VideoService {
      * @return Videos.
      */
     List<VideoDto> list();
+
+    /**
+     * Find video by ID.
+     *
+     * @param id The ID.
+     * @return Found video.
+     */
+    VideoDto findById(long id);
 }

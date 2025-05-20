@@ -17,6 +17,7 @@ package com.github.aistomin.andy.grails.backend.controllers.videos;
 
 import com.github.aistomin.andy.grails.backend.services.VideoService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -52,5 +53,16 @@ public final class VideoController {
     @GetMapping
     public List<VideoDto> list() {
         return this.videos.list();
+    }
+
+    /**
+     * Find video by ID.
+     *
+     * @param id The ID.
+     * @return Found video.
+     */
+    @GetMapping("/{id}")
+    public VideoDto findById(final @PathVariable long id) {
+        return this.videos.findById(id);
     }
 }

@@ -59,4 +59,23 @@ class VideoControllerTest {
             videos.get(0).getTitle()
         );
     }
+
+    /**
+     * Test that we correctly render the video that is found by ID.
+     */
+    @Test
+    void testFindById() {
+        final var response = template.exchange(
+            "/videos/7",
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<VideoDto>() { }
+        );
+        final var video = response.getBody();
+        Assertions.assertEquals(7L, video.getId());
+        Assertions.assertEquals(
+            "Johann Pachelbel - Sarabande // Andrej Istomin",
+            video.getTitle()
+        );
+    }
 }
