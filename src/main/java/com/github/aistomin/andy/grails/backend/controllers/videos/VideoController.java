@@ -16,6 +16,7 @@
 package com.github.aistomin.andy.grails.backend.controllers.videos;
 
 import com.github.aistomin.andy.grails.backend.services.VideoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/videos")
-public final class VideoController {
+@Slf4j
+public class VideoController {
 
     /**
      * Video service.
@@ -52,7 +54,10 @@ public final class VideoController {
      */
     @GetMapping
     public List<VideoDto> list() {
-        return this.videos.list();
+        log.debug("VideoController.list is called .....");
+        final var result = this.videos.list();
+        log.debug("VideoController.list returns {} videos", result.size());
+        return result;
     }
 
     /**
@@ -63,6 +68,9 @@ public final class VideoController {
      */
     @GetMapping("/{id}")
     public VideoDto findById(final @PathVariable long id) {
-        return this.videos.findById(id);
+        log.debug("VideoController.findById is called with ID  = {} .....", id);
+        final var video = this.videos.findById(id);
+        log.debug("VideoController.findById returns {}", video);
+        return video;
     }
 }
