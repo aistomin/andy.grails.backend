@@ -60,6 +60,11 @@ public final class VideoDto {
     private String youtubeId;
 
     /**
+     * YouTube channel's ID, that contains the video.
+     */
+    private String youtubeChannelId;
+
+    /**
      * The date when the video was created.
      */
     private ZonedDateTime createdAt;

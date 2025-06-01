@@ -51,6 +51,7 @@ public final class VideoServiceInMemory implements VideoService {
             "The photos in this video were taken by my wife(checkout her channel, by the way:  https://www.youtube.com/channel/UC810...) in Landkreis Dachau(mostly in Schwabhausen and Altomünster). The lovely place where I live.",
             "https://www.youtube.com/watch?v=lLe-HB1WLO4",
             "lLe-HB1WLO4",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2017,  Month.AUGUST, 20, 10, 5),
                 zone
@@ -66,6 +67,7 @@ public final class VideoServiceInMemory implements VideoService {
             "The melody composed and performed by Andrej Istomin except those telephone sounds.",
             "https://www.youtube.com/watch?v=j_Ve3uiVsaA",
             "j_Ve3uiVsaA",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2017,  Month.AUGUST, 21, 15, 35),
                 zone
@@ -81,6 +83,7 @@ public final class VideoServiceInMemory implements VideoService {
             "A little bit of an autumn mood :) Music piece is composed by Mauro Giuliani, called \"Sonatina op71 n°1\". The pictures in slide-show are the reproductions of different Russian painters.",
             "https://www.youtube.com/watch?v=DIEBQxqY1yU",
             "DIEBQxqY1yU",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2017,  Month.NOVEMBER, 11, 9, 28),
                 zone
@@ -96,6 +99,7 @@ public final class VideoServiceInMemory implements VideoService {
             "The piece is composed by Ritchie Blackmore.",
             "https://www.youtube.com/watch?v=iTVHH1vMIcI",
             "iTVHH1vMIcI",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2017,  Month.NOVEMBER, 13, 12, 14),
                 zone
@@ -111,6 +115,7 @@ public final class VideoServiceInMemory implements VideoService {
             "This time I'm playing \"Andante\" by Fernando Sor. It is the very first time when I try to create a real video instead of slide show which I did for my previous videos. I hope you like it :)",
             "https://www.youtube.com/watch?v=kbd7a7j0VOE",
             "kbd7a7j0VOE",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2017,  Month.DECEMBER, 15, 10, 33),
                 zone
@@ -126,6 +131,7 @@ public final class VideoServiceInMemory implements VideoService {
             "Today I'd like to show you my attempt to play instrumental version of the traditional English song \"Greensleeves\".",
             "https://www.youtube.com/watch?v=DDt7N5KxXrM",
             "DDt7N5KxXrM",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2019,  Month.MAY, 28, 10, 33),
                 zone
@@ -141,6 +147,7 @@ public final class VideoServiceInMemory implements VideoService {
             "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
             "https://www.youtube.com/watch?v=Hd05dNHYqAw",
             "Hd05dNHYqAw",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2019,  Month.JULY, 7, 11, 33),
                 zone
@@ -156,6 +163,7 @@ public final class VideoServiceInMemory implements VideoService {
             "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
             "https://www.youtube.com/watch?v=hRvXB_gnR84",
             "hRvXB_gnR84",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2020,  Month.JUNE, 13, 11, 33),
                 zone
@@ -171,6 +179,7 @@ public final class VideoServiceInMemory implements VideoService {
             "Thanks for watching this video. If you like it, please subscribe to my channel, comment the videos, \"like\" them and share with your friends.",
             "https://www.youtube.com/watch?v=AjQBAQ1jzwc",
             "AjQBAQ1jzwc",
+            "UC_Xbh9rT4YiFL4U84oalEjQ",
             ZonedDateTime.of(
                 LocalDateTime.of(2020,  Month.APRIL, 9, 0, 1),
                 zone
