@@ -54,7 +54,7 @@ jobs:
           HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)  # Get the last line, which is the HTTP response code
           if [[ "$HTTP_CODE" -ne 200 ]] && [[ "$HTTP_CODE" -ne 204 ]]; then
             echo "❌ Error: Received HTTP status code $HTTP_CODE from GitHub API:"
-            echo "$RESPONSE_BODY"
+            echo $RESPONSE
             exit 1  # Force the job to fail
           else
             echo "✅ GitHub API call was successful with HTTP status code: $HTTP_CODE"  
