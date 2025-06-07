@@ -15,8 +15,8 @@
  */
 
 /**
- * Application's controllers.
+ * Application's model.
  *
- * @since 0.1
+ * @since 0.3
  */
-package com.github.aistomin.andy.grails.backend.controllers;
+package com.github.aistomin.andy.grails.backend.model;

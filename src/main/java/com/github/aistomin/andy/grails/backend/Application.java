@@ -15,19 +15,49 @@
  */
 package com.github.aistomin.andy.grails.backend;
 
+import com.github.aistomin.andy.grails.backend.domain.DataGenerator;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 /**
  * Main application class.
  */
 @SpringBootApplication
+@Slf4j
 public class Application {
 
     /**
-     * Ctor.
+     * Data generator.
      */
-    protected Application() {
+    private final DataGenerator generator;
+
+    /**
+     * Ctor.
+     *
+     * @param gen Data generator.
+     */
+    protected Application(final DataGenerator gen) {
+        this.generator = gen;
+    }
+
+    /**
+     * Command line runner.
+     *
+     * @param ctx Application context.
+     * @return Runner.
+     */
+    @Bean
+    public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
+        return args -> {
+            log.info("Application is starting .....");
+            final var generated = generator.generateVideosIfNecessary();
+            log.info("{} videos generated.", generated);
+            log.info("Application is up and running.");
+        };
     }
 
     /**

@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/andys
+    username: root
+    password: root
+  jpa:
+    show-sql: false
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  application.name: andy.grails.backend

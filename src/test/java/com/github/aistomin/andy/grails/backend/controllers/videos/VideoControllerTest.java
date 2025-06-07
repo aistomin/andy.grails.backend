@@ -66,15 +66,15 @@ class VideoControllerTest {
     @Test
     void testFindById() {
         final var response = template.exchange(
-            "/videos/7",
+            "/videos/6",
             HttpMethod.GET,
             null,
             new ParameterizedTypeReference<VideoDto>() { }
         );
         final var video = response.getBody();
-        Assertions.assertEquals(7L, video.getId());
+        Assertions.assertEquals(6L, video.getId());
         Assertions.assertEquals(
-            "Johann Pachelbel - Sarabande // Andrej Istomin",
+            "Greensleeves(English traditional) // Andrej Istomin",
             video.getTitle()
         );
     }
