@@ -16,5 +16,7 @@
 
 /**
  * Application's services.
+ *
+ * @since 0.1
  */
 package com.github.aistomin.andy.grails.backend.services;

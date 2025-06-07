@@ -15,11 +15,9 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.videos;
 
+import com.github.aistomin.andy.grails.backend.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import java.util.List;
@@ -32,14 +30,7 @@ import java.util.List;
 @SuppressWarnings({
     "checkstyle:MagicNumber",
 })
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class VideoControllerTest {
-
-    /**
-     * Test REST template.
-     */
-    @Autowired
-    private TestRestTemplate template;
+class VideoControllerTest extends IntegrationTest {
 
     /**
      * Test that we correctly render videos over the API.
@@ -66,15 +57,15 @@ class VideoControllerTest {
     @Test
     void testFindById() {
         final var response = template.exchange(
-            "/videos/7",
+            "/videos/6",
             HttpMethod.GET,
             null,
             new ParameterizedTypeReference<VideoDto>() { }
         );
         final var video = response.getBody();
-        Assertions.assertEquals(7L, video.getId());
+        Assertions.assertEquals(6L, video.getId());
         Assertions.assertEquals(
-            "Johann Pachelbel - Sarabande // Andrej Istomin",
+            "Greensleeves(English traditional) // Andrej Istomin",
             video.getTitle()
         );
     }
