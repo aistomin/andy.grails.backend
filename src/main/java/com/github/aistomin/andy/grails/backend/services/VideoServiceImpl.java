@@ -54,12 +54,17 @@ public final class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<VideoDto> list() {
+    public List<VideoDto> findAll() {
         return videos.findAll().stream().map(mapper::toDto).toList();
     }
 
     @Override
     public VideoDto findById(final long id) {
         return videos.findById(id).map(mapper::toDto).orElse(null);
+    }
+
+    @Override
+    public VideoDto save(final VideoDto video) {
+        return mapper.toDto(videos.save(mapper.toEntity(video)));
     }
 }

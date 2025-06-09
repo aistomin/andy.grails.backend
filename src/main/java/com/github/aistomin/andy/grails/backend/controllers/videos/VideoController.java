@@ -55,7 +55,7 @@ public class VideoController {
     @GetMapping
     public List<VideoDto> list() {
         log.debug("VideoController.list is called .....");
-        final var result = this.videos.list();
+        final var result = this.videos.findAll();
         log.debug("VideoController.list returns {} videos", result.size());
         return result;
     }

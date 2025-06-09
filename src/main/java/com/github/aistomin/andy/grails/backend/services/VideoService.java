@@ -26,11 +26,11 @@ import java.util.List;
 public interface VideoService {
 
     /**
-     * Load videos.
+     * Find all the existing videos.
      *
      * @return Videos.
      */
-    List<VideoDto> list();
+    List<VideoDto> findAll();
 
     /**
      * Find video by ID.
@@ -39,4 +39,12 @@ public interface VideoService {
      * @return Found video.
      */
     VideoDto findById(long id);
+
+    /**
+     * Save video.
+     *
+     * @param video Video that needs to be saved.
+     * @return Saved video.
+     */
+    VideoDto save(VideoDto video);
 }
