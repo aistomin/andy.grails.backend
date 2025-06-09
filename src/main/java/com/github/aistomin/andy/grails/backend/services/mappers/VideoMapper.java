@@ -37,17 +37,16 @@ public class VideoMapper {
         if (video == null) {
             return null;
         }
-        VideoDto dto = new VideoDto();
-        dto.setId(video.getId());
-        dto.setTitle(video.getTitle());
-        dto.setDescription(video.getDescription());
-        dto.setUrl(video.getUrl());
-        dto.setYoutubeId(video.getYoutubeId());
-        dto.setYoutubeChannelId(video.getYoutubeChannelId());
-        dto.setCreatedAt(video.getCreatedAt());
-        dto.setPublishedAt(video.getPublishedAt());
-
-        return dto;
+        return new VideoDto(
+            video.getId(),
+            video.getTitle(),
+            video.getDescription(),
+            video.getUrl(),
+            video.getYoutubeId(),
+            video.getYoutubeChannelId(),
+            video.getCreatedAt(),
+            video.getPublishedAt()
+        );
     }
 
     /**
