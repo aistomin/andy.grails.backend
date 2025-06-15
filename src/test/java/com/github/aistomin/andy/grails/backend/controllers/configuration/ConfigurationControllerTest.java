@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.andy.grails.backend.controllers.videos;
+package com.github.aistomin.andy.grails.backend.controllers.configuration;
 
 import com.github.aistomin.andy.grails.backend.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
@@ -23,51 +23,48 @@ import org.springframework.http.HttpMethod;
 import java.util.List;
 
 /**
- * Test for {@link VideoController}.
+ * Test for {@link ConfigurationController}.
  *
- * @since 0.1
  * @todo: Issue #56. Let's remove the checkstyle warning suppression.
+ * @since 0.3
  */
 @SuppressWarnings({
     "checkstyle:MagicNumber",
 })
-class VideoControllerTest extends IntegrationTest {
+class ConfigurationControllerTest extends IntegrationTest {
 
     /**
-     * Test that we correctly render videos over the API.
+     * Test that we correctly render our social media links to frontend.
      */
     @Test
-    void testListVideos() {
+    void testSocialMediaLinks() {
         final var response = template.exchange(
-            "/videos",
+            "/configuration/social/media/links",
             HttpMethod.GET,
             null,
-            new ParameterizedTypeReference<List<VideoDto>>() { }
+            new ParameterizedTypeReference<List<SocialMediaLinkDto>>() {
+            }
         );
-        final var videos = response.getBody();
-        Assertions.assertEquals(9, videos.size());
+        final var links = response.getBody();
+        Assertions.assertEquals(3, links.size());
+        final var youtube = links.stream().filter(dto ->
+            dto.getSocialMedia() == SocialMedia.YOUTUBE
+        ).findFirst().get();
         Assertions.assertEquals(
-            "Klaus Schindler - Zeit für Träume // Andrej Istomin",
-            videos.get(0).getTitle()
+            "https://www.youtube.com/@andygrails", youtube.getUrl()
         );
-    }
-
-    /**
-     * Test that we correctly render the video that is found by ID.
-     */
-    @Test
-    void testFindById() {
-        final var response = template.exchange(
-            "/videos/6",
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<VideoDto>() { }
-        );
-        final var video = response.getBody();
-        Assertions.assertEquals(6L, video.getId());
+        final var instagram = links.stream().filter(dto ->
+            dto.getSocialMedia() == SocialMedia.INSTAGRAM
+        ).findFirst().get();
         Assertions.assertEquals(
-            "Greensleeves(English traditional) // Andrej Istomin",
-            video.getTitle()
+            "https://www.instagram.com/andy.grails/", instagram.getUrl()
+        );
+        final var facebook = links.stream().filter(dto ->
+            dto.getSocialMedia() == SocialMedia.FACEBOOK
+        ).findFirst().get();
+        Assertions.assertEquals(
+            "https://www.facebook.com/profile.php?id=100074082643728",
+            facebook.getUrl()
         );
     }
 }
