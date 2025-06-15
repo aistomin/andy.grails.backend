@@ -26,6 +26,7 @@ import java.util.List;
  * Configuration controller.
  *
  * @since 0.3
+ * @todo: Issue #59. Store the social media links in the database.
  */
 @RestController
 @RequestMapping("/configuration")
