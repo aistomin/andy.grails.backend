@@ -25,8 +25,8 @@ import java.util.List;
 /**
  * Test for {@link ConfigurationController}.
  *
- * @since 0.3
  * @todo: Issue #56. Let's remove the checkstyle warning suppression.
+ * @since 0.3
  */
 @SuppressWarnings({
     "checkstyle:MagicNumber",
@@ -42,9 +42,29 @@ class ConfigurationControllerTest extends IntegrationTest {
             "/configuration/social/media/links",
             HttpMethod.GET,
             null,
-            new ParameterizedTypeReference<List<SocialMediaLinkDto>>() { }
+            new ParameterizedTypeReference<List<SocialMediaLinkDto>>() {
+            }
         );
         final var links = response.getBody();
         Assertions.assertEquals(3, links.size());
+        final var youtube = links.stream().filter(dto ->
+            dto.getSocialMedia() == SocialMedia.YOUTUBE
+        ).findFirst().get();
+        Assertions.assertEquals(
+            "https://www.youtube.com/@andygrails", youtube.getUrl()
+        );
+        final var instagram = links.stream().filter(dto ->
+            dto.getSocialMedia() == SocialMedia.INSTAGRAM
+        ).findFirst().get();
+        Assertions.assertEquals(
+            "https://www.instagram.com/andy.grails/", instagram.getUrl()
+        );
+        final var facebook = links.stream().filter(dto ->
+            dto.getSocialMedia() == SocialMedia.FACEBOOK
+        ).findFirst().get();
+        Assertions.assertEquals(
+            "https://www.facebook.com/profile.php?id=100074082643728",
+            facebook.getUrl()
+        );
     }
 }

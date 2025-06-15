@@ -43,17 +43,17 @@ public class ConfigurationController {
             new SocialMediaLinkDto(
                 0L,
                 SocialMedia.YOUTUBE,
-                "https://youtube.com/channel/"
+                "https://www.youtube.com/@andygrails"
             ),
             new SocialMediaLinkDto(
                 1L,
                 SocialMedia.INSTAGRAM,
-                "https://www.instagram.com/"
+                "https://www.instagram.com/andy.grails/"
             ),
             new SocialMediaLinkDto(
                 2L,
                 SocialMedia.FACEBOOK,
-                "https://facebook.com/"
+                "https://www.facebook.com/profile.php?id=100074082643728"
             )
         );
     }
