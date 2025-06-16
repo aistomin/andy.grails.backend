@@ -48,23 +48,23 @@ class ConfigurationControllerTest extends IntegrationTest {
         final var links = response.getBody();
         Assertions.assertEquals(3, links.size());
         final var youtube = links.stream().filter(dto ->
-            dto.getSocialMedia() == SocialMedia.YOUTUBE
+            dto.socialMedia() == SocialMedia.YOUTUBE
         ).findFirst().get();
         Assertions.assertEquals(
-            "https://www.youtube.com/@andygrails", youtube.getUrl()
+            "https://www.youtube.com/@andygrails", youtube.url()
         );
         final var instagram = links.stream().filter(dto ->
-            dto.getSocialMedia() == SocialMedia.INSTAGRAM
+            dto.socialMedia() == SocialMedia.INSTAGRAM
         ).findFirst().get();
         Assertions.assertEquals(
-            "https://www.instagram.com/andy.grails/", instagram.getUrl()
+            "https://www.instagram.com/andy.grails/", instagram.url()
         );
         final var facebook = links.stream().filter(dto ->
-            dto.getSocialMedia() == SocialMedia.FACEBOOK
+            dto.socialMedia() == SocialMedia.FACEBOOK
         ).findFirst().get();
         Assertions.assertEquals(
             "https://www.facebook.com/profile.php?id=100074082643728",
-            facebook.getUrl()
+            facebook.url()
         );
     }
 }

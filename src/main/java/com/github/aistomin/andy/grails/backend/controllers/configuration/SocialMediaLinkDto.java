@@ -15,36 +15,16 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.configuration;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 /**
  * The link to the social media profile or channel.
  *
+ * @param id Link ID.
+ * @param socialMedia A type of the social media.
+ * @param url Social media channel or profile URL.
+ *
  * @since 0.3
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString()
-@Data
-public final class SocialMediaLinkDto {
-
-    /**
-     * Link ID.
-     */
-    private Long id;
-
-    /**
-     * Social media.
-     */
-    private SocialMedia socialMedia;
-
-    /**
-     * Social media channel URL.
-     */
-    private String url;
+public record SocialMediaLinkDto(
+    Long id, SocialMedia socialMedia, String url
+) {
 }
