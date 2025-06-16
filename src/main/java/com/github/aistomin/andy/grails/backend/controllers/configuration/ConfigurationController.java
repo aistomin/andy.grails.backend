@@ -40,7 +40,8 @@ public class ConfigurationController {
      */
     @GetMapping(path = "/social/media/links")
     public List<SocialMediaLinkDto> socialMediaLinks() {
-        return Arrays.asList(
+        log.info("ConfigurationController.socialMediaLinks is called .....");
+        final var links = Arrays.asList(
             new SocialMediaLinkDto(
                 0L,
                 SocialMedia.YOUTUBE,
@@ -57,5 +58,10 @@ public class ConfigurationController {
                 "https://www.facebook.com/profile.php?id=100074082643728"
             )
         );
+        log.info(
+            "ConfigurationController.socialMediaLinks returns {} links.",
+            links.size()
+        );
+        return links;
     }
 }

@@ -54,9 +54,9 @@ public class VideoController {
      */
     @GetMapping
     public List<VideoDto> list() {
-        log.debug("VideoController.list is called .....");
+        log.info("VideoController.list is called .....");
         final var result = this.videos.findAll();
-        log.debug("VideoController.list returns {} videos.", result.size());
+        log.info("VideoController.list returns {} videos.", result.size());
         return result;
     }
 
@@ -68,9 +68,9 @@ public class VideoController {
      */
     @GetMapping("/{id}")
     public VideoDto findById(final @PathVariable long id) {
-        log.debug("VideoController.findById is called with ID = {} .....", id);
+        log.info("VideoController.findById is called with ID = {} .....", id);
         final var video = this.videos.findById(id);
-        log.debug("VideoController.findById returns {}.", video);
+        log.info("VideoController.findById returns {}.", video);
         return video;
     }
 }
