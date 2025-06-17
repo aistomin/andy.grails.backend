@@ -15,62 +15,29 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.videos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import java.time.ZonedDateTime;
 
 /**
  * Video DTO.
  *
+ * @param id Video ID.
+ * @param title Video's title.
+ * @param description Video's description.
+ * @param url Video URL.
+ * @param youtubeId Video's ID on the YouTube platform.
+ * @param youtubeChannelId YouTube channel's ID, that contains the video.
+ * @param createdAt The date when the video was created.
+ * @param publishedAt The date when the video was published.
  * @since 0.1
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString()
-@Data
-public final class VideoDto {
-
-    /**
-     * Video ID.
-     */
-    private Long id;
-
-    /**
-     * Video's title.
-     */
-    private String title;
-
-    /**
-     * Description.
-     */
-    private String description;
-
-    /**
-     * Video URL.
-     */
-    private String url;
-
-    /**
-     * Video's ID on the YouTube platform.
-     */
-    private String youtubeId;
-
-    /**
-     * YouTube channel's ID, that contains the video.
-     */
-    private String youtubeChannelId;
-
-    /**
-     * The date when the video was created.
-     */
-    private ZonedDateTime createdAt;
-
-    /**
-     * The date when the video was published.
-     */
-    private ZonedDateTime publishedAt;
+public record VideoDto(
+    Long id,
+    String title,
+    String description,
+    String url,
+    String youtubeId,
+    String youtubeChannelId,
+    ZonedDateTime createdAt,
+    ZonedDateTime publishedAt
+) {
 }

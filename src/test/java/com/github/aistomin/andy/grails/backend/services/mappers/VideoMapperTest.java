@@ -65,14 +65,14 @@ class VideoMapperTest {
         final var publishedAt = ZonedDateTime.now();
         video.setPublishedAt(publishedAt);
         final var dto = mapper.toDto(video);
-        Assertions.assertEquals(id, dto.getId());
-        Assertions.assertEquals(title, dto.getTitle());
-        Assertions.assertEquals(description, dto.getDescription());
-        Assertions.assertEquals(url, dto.getUrl());
-        Assertions.assertEquals(youtubeId, dto.getYoutubeId());
-        Assertions.assertEquals(channelId, dto.getYoutubeChannelId());
-        Assertions.assertEquals(createdAt, dto.getCreatedAt());
-        Assertions.assertEquals(publishedAt, dto.getPublishedAt());
+        Assertions.assertEquals(id, dto.id());
+        Assertions.assertEquals(title, dto.title());
+        Assertions.assertEquals(description, dto.description());
+        Assertions.assertEquals(url, dto.url());
+        Assertions.assertEquals(youtubeId, dto.youtubeId());
+        Assertions.assertEquals(channelId, dto.youtubeChannelId());
+        Assertions.assertEquals(createdAt, dto.createdAt());
+        Assertions.assertEquals(publishedAt, dto.publishedAt());
     }
 
     /**
@@ -81,33 +81,28 @@ class VideoMapperTest {
     @Test
     void testToEntity() {
         Assertions.assertNull(mapper.toEntity(null));
-        final var dto = new VideoDto();
-        final var id = rand.nextLong();
-        dto.setId(id);
-        final var title = String.format("Title %d", rand.nextLong());
-        dto.setTitle(title);
-        final var description = String.format(
-            "Description %d", rand.nextLong()
+        final var dto = new VideoDto(
+            rand.nextLong(),
+            String.format("Title %d", rand.nextLong()),
+            String.format(
+                "Description %d", rand.nextLong()
+            ),
+            String.format("https://%d.com", rand.nextLong()),
+            Long.valueOf(rand.nextLong()).toString(),
+            Long.valueOf(rand.nextLong()).toString(),
+            ZonedDateTime.now(),
+            ZonedDateTime.now()
         );
-        dto.setDescription(description);
-        final var url = String.format("https://%d.com", rand.nextLong());
-        dto.setUrl(url);
-        final var youtubeId = Long.valueOf(rand.nextLong()).toString();
-        dto.setYoutubeId(youtubeId);
-        final var channelId = Long.valueOf(rand.nextLong()).toString();
-        dto.setYoutubeChannelId(channelId);
-        final var createdAt = ZonedDateTime.now();
-        dto.setCreatedAt(createdAt);
-        final var publishedAt = ZonedDateTime.now();
-        dto.setPublishedAt(publishedAt);
         final var video = mapper.toEntity(dto);
-        Assertions.assertEquals(id, video.getId());
-        Assertions.assertEquals(title, video.getTitle());
-        Assertions.assertEquals(description, video.getDescription());
-        Assertions.assertEquals(url, video.getUrl());
-        Assertions.assertEquals(youtubeId, video.getYoutubeId());
-        Assertions.assertEquals(channelId, video.getYoutubeChannelId());
-        Assertions.assertEquals(createdAt, video.getCreatedAt());
-        Assertions.assertEquals(publishedAt, video.getPublishedAt());
+        Assertions.assertEquals(dto.id(), video.getId());
+        Assertions.assertEquals(dto.title(), video.getTitle());
+        Assertions.assertEquals(dto.description(), video.getDescription());
+        Assertions.assertEquals(dto.url(), video.getUrl());
+        Assertions.assertEquals(dto.youtubeId(), video.getYoutubeId());
+        Assertions.assertEquals(
+            dto.youtubeChannelId(), video.getYoutubeChannelId()
+        );
+        Assertions.assertEquals(dto.createdAt(), video.getCreatedAt());
+        Assertions.assertEquals(dto.publishedAt(), video.getPublishedAt());
     }
 }

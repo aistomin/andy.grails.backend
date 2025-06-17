@@ -60,14 +60,14 @@ public class VideoMapper {
             return null;
         }
         return new Video(
-            dto.getId(),
-            dto.getTitle(),
-            dto.getDescription(),
-            dto.getUrl(),
-            dto.getYoutubeId(),
-            dto.getYoutubeChannelId(),
-            dto.getCreatedAt(),
-            dto.getPublishedAt()
+            dto.id(),
+            dto.title(),
+            dto.description(),
+            dto.url(),
+            dto.youtubeId(),
+            dto.youtubeChannelId(),
+            dto.createdAt(),
+            dto.publishedAt()
         );
     }
 }

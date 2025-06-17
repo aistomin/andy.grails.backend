@@ -48,7 +48,7 @@ class VideoControllerTest extends IntegrationTest {
         Assertions.assertEquals(9, videos.size());
         Assertions.assertEquals(
             "Klaus Schindler - Zeit für Träume // Andrej Istomin",
-            videos.get(0).getTitle()
+            videos.get(0).title()
         );
     }
 
@@ -64,10 +64,10 @@ class VideoControllerTest extends IntegrationTest {
             new ParameterizedTypeReference<VideoDto>() { }
         );
         final var video = response.getBody();
-        Assertions.assertEquals(6L, video.getId());
+        Assertions.assertEquals(6L, video.id());
         Assertions.assertEquals(
             "Greensleeves(English traditional) // Andrej Istomin",
-            video.getTitle()
+            video.title()
         );
     }
 }
