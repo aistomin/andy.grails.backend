@@ -35,5 +35,10 @@ public enum SocialMedia {
     /**
      * Enum entry for the Facebook social network.
      */
-    FACEBOOK
+    FACEBOOK,
+
+    /**
+     * Enum entry for the GitHub "social" network.
+     */
+    GITHUB
 }
