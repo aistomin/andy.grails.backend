@@ -25,13 +25,14 @@ import java.util.List;
 /**
  * Test for {@link ConfigurationController}.
  *
- * @todo: Issue #56. Let's remove the checkstyle warning suppression.
  * @since 0.3
  */
-@SuppressWarnings({
-    "checkstyle:MagicNumber",
-})
 class ConfigurationControllerTest extends IntegrationTest {
+
+    /**
+     * Count of the links that we store for test.
+     */
+    public static final int EXPECTED_LINKS_COUNT = 3;
 
     /**
      * Test that we correctly render our social media links to frontend.
@@ -46,7 +47,7 @@ class ConfigurationControllerTest extends IntegrationTest {
             }
         );
         final var links = response.getBody();
-        Assertions.assertEquals(3, links.size());
+        Assertions.assertEquals(EXPECTED_LINKS_COUNT, links.size());
         final var youtube = links.stream().filter(dto ->
             dto.socialMedia() == SocialMedia.YOUTUBE
         ).findFirst().get();
