@@ -26,12 +26,13 @@ import java.util.List;
  * Test for {@link VideoController}.
  *
  * @since 0.1
- * @todo: Issue #56. Let's remove the checkstyle warning suppression.
  */
-@SuppressWarnings({
-    "checkstyle:MagicNumber",
-})
 class VideoControllerTest extends IntegrationTest {
+
+    /**
+     * Count of the videos that we store for test.
+     */
+    public static final int EXPECTED_VIDEOS_COUNT = 9;
 
     /**
      * Test that we correctly render videos over the API.
@@ -45,7 +46,7 @@ class VideoControllerTest extends IntegrationTest {
             new ParameterizedTypeReference<List<VideoDto>>() { }
         );
         final var videos = response.getBody();
-        Assertions.assertEquals(9, videos.size());
+        Assertions.assertEquals(EXPECTED_VIDEOS_COUNT, videos.size());
         Assertions.assertEquals(
             "Klaus Schindler - Zeit für Träume // Andrej Istomin",
             videos.get(0).title()
@@ -57,14 +58,15 @@ class VideoControllerTest extends IntegrationTest {
      */
     @Test
     void testFindById() {
+        final var six = 6;
         final var response = template.exchange(
-            "/videos/6",
+            String.format("/videos/%d", six),
             HttpMethod.GET,
             null,
             new ParameterizedTypeReference<VideoDto>() { }
         );
         final var video = response.getBody();
-        Assertions.assertEquals(6L, video.id());
+        Assertions.assertEquals(six, video.id());
         Assertions.assertEquals(
             "Greensleeves(English traditional) // Andrej Istomin",
             video.title()
