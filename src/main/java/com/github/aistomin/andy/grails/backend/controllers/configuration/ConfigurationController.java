@@ -41,21 +41,27 @@ public class ConfigurationController {
     @GetMapping(path = "/social/media/links")
     public List<SocialMediaLinkDto> socialMediaLinks() {
         log.info("ConfigurationController.socialMediaLinks is called .....");
+        var id = 0L;
         final var links = Arrays.asList(
             new SocialMediaLinkDto(
-                0L,
+                id,
                 SocialMedia.YOUTUBE,
                 "https://www.youtube.com/@andygrails"
             ),
             new SocialMediaLinkDto(
-                1L,
+                ++id,
                 SocialMedia.INSTAGRAM,
                 "https://www.instagram.com/andy.grails/"
             ),
             new SocialMediaLinkDto(
-                2L,
+                ++id,
                 SocialMedia.FACEBOOK,
                 "https://www.facebook.com/profile.php?id=100074082643728"
+            ),
+            new SocialMediaLinkDto(
+                ++id,
+                SocialMedia.GITHUB,
+                "https://github.com/aistomin"
             )
         );
         log.info(
