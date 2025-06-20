@@ -18,6 +18,7 @@ package com.github.aistomin.andy.grails.backend.services;
 import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialMediaLinkDto;
 import com.github.aistomin.andy.grails.backend.model.SocialMediaLinkRepository;
 import com.github.aistomin.andy.grails.backend.services.mappers.SocialMediaLinkMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import java.util.List;
  * @since 0.1
  */
 @Service
+@Slf4j
 public final class ConfigurationServiceImpl implements ConfigurationService {
 
     /**
@@ -56,13 +58,33 @@ public final class ConfigurationServiceImpl implements ConfigurationService {
 
     @Override
     public List<SocialMediaLinkDto> findAllSocialMediaLinks() {
-        return links.findAll().stream().map(mapper::toDto).toList();
+        log.debug(
+            "ConfigurationServiceImpl.findAllSocialMediaLinks is called ....."
+        );
+        final var result = this.links.findAll()
+            .stream()
+            .map(mapper::toDto)
+            .toList();
+        log.debug(
+            "ConfigurationServiceImpl.findAllSocialMediaLinks got {} links.",
+            result.size()
+        );
+        return result;
     }
 
     @Override
     public SocialMediaLinkDto saveSocialMediaLink(
         final SocialMediaLinkDto link
     ) {
-        return mapper.toDto(links.save(mapper.toEntity(link)));
+        log.debug(
+            "ConfigurationServiceImpl.saveSocialMediaLink is called {} .....",
+            link
+        );
+        final var result = mapper.toDto(links.save(mapper.toEntity(link)));
+        log.debug(
+            "ConfigurationServiceImpl.saveSocialMediaLink saved: {}.",
+            result
+        );
+        return result;
     }
 }

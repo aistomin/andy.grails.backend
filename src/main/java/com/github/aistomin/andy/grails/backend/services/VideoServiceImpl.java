@@ -18,6 +18,7 @@ package com.github.aistomin.andy.grails.backend.services;
 import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
 import com.github.aistomin.andy.grails.backend.model.VideoRepository;
 import com.github.aistomin.andy.grails.backend.services.mappers.VideoMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import java.util.List;
  * @since 0.1
  */
 @Service
+@Slf4j
 public final class VideoServiceImpl implements VideoService {
 
     /**
@@ -55,16 +57,42 @@ public final class VideoServiceImpl implements VideoService {
 
     @Override
     public List<VideoDto> findAll() {
-        return videos.findAll().stream().map(mapper::toDto).toList();
+        log.debug(
+            "VideoServiceImpl.findAll is called ....."
+        );
+        final var result = videos.findAll()
+            .stream()
+            .map(mapper::toDto)
+            .toList();
+        log.debug(
+            "VideoServiceImpl.findAll returns {} videos.", result.size()
+        );
+        return result;
     }
 
     @Override
     public VideoDto findById(final long id) {
-        return videos.findById(id).map(mapper::toDto).orElse(null);
+        log.debug(
+            "VideoServiceImpl.findById is called with ID = {} .....", id
+        );
+        final var result = videos.findById(id).map(mapper::toDto).orElse(null);
+        log.debug(
+            "VideoServiceImpl.findById result: {}.", result
+        );
+        return result;
     }
 
     @Override
     public VideoDto save(final VideoDto video) {
-        return mapper.toDto(videos.save(mapper.toEntity(video)));
+        log.debug(
+            "VideoServiceImpl.save is called {} .....",
+            video
+        );
+        final var result = mapper.toDto(videos.save(mapper.toEntity(video)));
+        log.debug(
+            "VideoServiceImpl.save saved: {}.",
+            result
+        );
+        return result;
     }
 }
