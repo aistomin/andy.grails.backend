@@ -5,6 +5,7 @@
         </encoder>
     </appender>
     <logger name="com.github.aistomin.andy.grails.backend.controllers" level="DEBUG" />
+    <logger name="com.github.aistomin.andy.grails.backend.services" level="DEBUG" />
     <logger name="com.github.aistomin.andy.grails.backend.logging" level="DEBUG" />
     <root level="INFO">
         <appender-ref ref="STDOUT" />
