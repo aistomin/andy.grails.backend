@@ -30,7 +30,7 @@ import java.util.Random;
 class VideoMapperTest {
 
     /**
-     * video mapper to test.
+     * Video mapper to test.
      */
     private final VideoMapper mapper = new VideoMapper();
 
