@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.configuration;
 
+import com.github.aistomin.andy.grails.backend.model.SocialMedia;
 import com.github.aistomin.andy.grails.backend.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

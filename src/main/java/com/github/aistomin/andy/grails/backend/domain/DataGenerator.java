@@ -15,7 +15,10 @@
  */
 package com.github.aistomin.andy.grails.backend.domain;
 
+import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialMediaLinkDto;
 import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
+import com.github.aistomin.andy.grails.backend.model.SocialMedia;
+import com.github.aistomin.andy.grails.backend.services.ConfigurationService;
 import com.github.aistomin.andy.grails.backend.services.VideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -39,17 +42,27 @@ import java.time.ZonedDateTime;
 public final class DataGenerator {
 
     /**
-     * Video repository.
+     * Video service.
      */
     private final VideoService videos;
 
     /**
+     * Configuration service.
+     */
+    private final ConfigurationService configuration;
+
+    /**
      * Ctor.
      *
-     * @param service Video service.
+     * @param vids Video service.
+     * @param conf Configuration service.
      */
-    public DataGenerator(final VideoService service) {
-        this.videos = service;
+    public DataGenerator(
+        final VideoService vids,
+        final ConfigurationService conf
+    ) {
+        this.videos = vids;
+        this.configuration = conf;
     }
 
     /**
@@ -210,6 +223,51 @@ public final class DataGenerator {
             return videos.findAll().size();
         } else {
             log.debug("Videos already exists.");
+            return 0;
+        }
+    }
+
+    /**
+     * Generate initial configuration if necessary.
+     *
+     * @return The number of generated entities.
+     */
+    public Integer generateConfigurationIfNecessary() {
+        log.debug("Generating social media links if necessary .....");
+        if (configuration.findAllSocialMediaLinks().isEmpty()) {
+            log.debug("No social media links found. Let's generate them .....");
+            configuration.saveSocialMediaLink(
+                new SocialMediaLinkDto(
+                    null,
+                    SocialMedia.YOUTUBE,
+                    "https://www.youtube.com/@andygrails"
+                )
+            );
+            configuration.saveSocialMediaLink(
+                new SocialMediaLinkDto(
+                    null,
+                    SocialMedia.INSTAGRAM,
+                    "https://www.instagram.com/andy.grails/"
+                )
+            );
+            configuration.saveSocialMediaLink(
+                new SocialMediaLinkDto(
+                    null,
+                    SocialMedia.FACEBOOK,
+                    "https://www.facebook.com/profile.php?id=100074082643728"
+                )
+            );
+            configuration.saveSocialMediaLink(
+                new SocialMediaLinkDto(
+                    null,
+                    SocialMedia.GITHUB,
+                    "https://github.com/aistomin"
+                )
+            );
+            log.debug("Social media links were created.");
+            return configuration.findAllSocialMediaLinks().size();
+        } else {
+            log.debug("Social media links already exists.");
             return 0;
         }
     }

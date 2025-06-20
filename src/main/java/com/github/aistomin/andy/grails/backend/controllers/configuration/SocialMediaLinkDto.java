@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.configuration;
 
+import com.github.aistomin.andy.grails.backend.model.SocialMedia;
+
 /**
  * The link to the social media profile or channel.
  *

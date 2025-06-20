@@ -54,8 +54,10 @@ public class Application {
     public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
         return args -> {
             log.info("Application is starting .....");
-            final var generated = generator.generateVideosIfNecessary();
-            log.info("{} videos generated.", generated);
+            final var videos = generator.generateVideosIfNecessary();
+            log.info("{} videos generated.", videos);
+            final var conf = generator.generateConfigurationIfNecessary();
+            log.info("{} configuration entities generated.", conf);
             log.info("Application is up and running.");
         };
     }

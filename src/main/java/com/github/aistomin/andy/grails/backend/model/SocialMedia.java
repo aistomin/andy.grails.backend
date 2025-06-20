@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.andy.grails.backend.controllers.configuration;
+package com.github.aistomin.andy.grails.backend.model;
 
 /**
  * Social media enum.

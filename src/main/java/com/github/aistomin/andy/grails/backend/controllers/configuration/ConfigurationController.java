@@ -15,23 +15,36 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.configuration;
 
+import com.github.aistomin.andy.grails.backend.services.ConfigurationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Configuration controller.
  *
  * @since 0.3
- * @todo: Issue #59. Store the social media links in the database.
  */
 @RestController
 @RequestMapping("/configuration")
 @Slf4j
 public class ConfigurationController {
+
+    /**
+     * Configuration service.
+     */
+    private final ConfigurationService conf;
+
+    /**
+     * Ctor.
+     *
+     * @param service Configuration service.
+     */
+    public ConfigurationController(final ConfigurationService service) {
+        this.conf = service;
+    }
 
     /**
      * Get social media links to our profiles and channels.
@@ -41,29 +54,7 @@ public class ConfigurationController {
     @GetMapping(path = "/social/media/links")
     public List<SocialMediaLinkDto> socialMediaLinks() {
         log.info("ConfigurationController.socialMediaLinks is called .....");
-        var id = 0L;
-        final var links = Arrays.asList(
-            new SocialMediaLinkDto(
-                id,
-                SocialMedia.YOUTUBE,
-                "https://www.youtube.com/@andygrails"
-            ),
-            new SocialMediaLinkDto(
-                ++id,
-                SocialMedia.INSTAGRAM,
-                "https://www.instagram.com/andy.grails/"
-            ),
-            new SocialMediaLinkDto(
-                ++id,
-                SocialMedia.FACEBOOK,
-                "https://www.facebook.com/profile.php?id=100074082643728"
-            ),
-            new SocialMediaLinkDto(
-                ++id,
-                SocialMedia.GITHUB,
-                "https://github.com/aistomin"
-            )
-        );
+        final var links = conf.findAllSocialMediaLinks();
         log.info(
             "ConfigurationController.socialMediaLinks returns {} links.",
             links.size()
