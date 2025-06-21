@@ -15,9 +15,8 @@
  */
 package com.github.aistomin.andy.grails.backend.services;
 
-import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
+import com.github.aistomin.andy.grails.backend.model.Video;
 import com.github.aistomin.andy.grails.backend.model.VideoRepository;
-import com.github.aistomin.andy.grails.backend.services.mappers.VideoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -38,31 +37,21 @@ public final class VideoServiceImpl implements VideoService {
     private final VideoRepository videos;
 
     /**
-     * Video mapper.
-     */
-    private final VideoMapper mapper;
-
-    /**
      * Ctor.
      *
      * @param repo Videos repository.
-     * @param map Video mapper.
      */
-    public VideoServiceImpl(
-        final VideoRepository repo, final VideoMapper map
-    ) {
+    public VideoServiceImpl(final VideoRepository repo) {
         this.videos = repo;
-        this.mapper = map;
     }
 
     @Override
-    public List<VideoDto> findAll() {
+    public List<Video> findAll() {
         log.debug(
             "VideoServiceImpl.findAll is called ....."
         );
         final var result = videos.findAll()
             .stream()
-            .map(mapper::toDto)
             .toList();
         log.debug(
             "VideoServiceImpl.findAll returns {} videos.", result.size()
@@ -71,11 +60,11 @@ public final class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public VideoDto findById(final long id) {
+    public Video findById(final long id) {
         log.debug(
             "VideoServiceImpl.findById is called with ID = {} .....", id
         );
-        final var result = videos.findById(id).map(mapper::toDto).orElse(null);
+        final var result = videos.findById(id).orElse(null);
         log.debug(
             "VideoServiceImpl.findById result: {}.", result
         );
@@ -83,12 +72,12 @@ public final class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public VideoDto save(final VideoDto video) {
+    public Video save(final Video video) {
         log.debug(
             "VideoServiceImpl.save is called {} .....",
             video
         );
-        final var result = mapper.toDto(videos.save(mapper.toEntity(video)));
+        final var result = videos.save(video);
         log.debug(
             "VideoServiceImpl.save saved: {}.",
             result

@@ -16,6 +16,7 @@
 package com.github.aistomin.andy.grails.backend.controllers.videos;
 
 import com.github.aistomin.andy.grails.backend.services.VideoService;
+import com.github.aistomin.andy.grails.backend.services.mappers.VideoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,12 +40,22 @@ public class VideoController {
     private final VideoService videos;
 
     /**
+     * Video mapper.
+     */
+    private final VideoMapper mapper;
+
+    /**
      * Ctor.
      *
      * @param service Video service.
+     * @param map Video mapper.
      */
-    public VideoController(final VideoService service) {
+    public VideoController(
+        final VideoService service,
+        final VideoMapper map
+    ) {
         this.videos = service;
+        this.mapper = map;
     }
 
     /**
@@ -55,7 +66,10 @@ public class VideoController {
     @GetMapping
     public List<VideoDto> list() {
         log.info("VideoController.list is called .....");
-        final var result = this.videos.findAll();
+        final var result = this.videos.findAll()
+            .stream()
+            .map(mapper::toDto)
+            .toList();
         log.info("VideoController.list returns {} videos.", result.size());
         return result;
     }
@@ -69,7 +83,7 @@ public class VideoController {
     @GetMapping("/{id}")
     public VideoDto findById(final @PathVariable long id) {
         log.info("VideoController.findById is called with ID = {} .....", id);
-        final var video = this.videos.findById(id);
+        final var video = mapper.toDto(this.videos.findById(id));
         log.info("VideoController.findById returns {}.", video);
         return video;
     }

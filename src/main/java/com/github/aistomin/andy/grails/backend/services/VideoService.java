@@ -15,7 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend.services;
 
-import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
+import com.github.aistomin.andy.grails.backend.model.Video;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public interface VideoService {
      *
      * @return Videos.
      */
-    List<VideoDto> findAll();
+    List<Video> findAll();
 
     /**
      * Find video by ID.
@@ -38,7 +38,7 @@ public interface VideoService {
      * @param id The ID.
      * @return Found video.
      */
-    VideoDto findById(long id);
+    Video findById(long id);
 
     /**
      * Save video.
@@ -46,5 +46,5 @@ public interface VideoService {
      * @param video Video that needs to be saved.
      * @return Saved video.
      */
-    VideoDto save(VideoDto video);
+    Video save(Video video);
 }
