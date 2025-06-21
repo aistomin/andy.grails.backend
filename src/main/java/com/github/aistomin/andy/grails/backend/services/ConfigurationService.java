@@ -15,7 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend.services;
 
-import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialMediaLinkDto;
+import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public interface ConfigurationService {
      *
      * @return Social media links.
      */
-    List<SocialMediaLinkDto> findAllSocialMediaLinks();
+    List<SocialMediaLink> findAllSocialMediaLinks();
 
     /**
      * Save social media link.
@@ -38,5 +38,5 @@ public interface ConfigurationService {
      * @param link Social media link that needs to be saved.
      * @return Saved social media link.
      */
-    SocialMediaLinkDto saveSocialMediaLink(SocialMediaLinkDto link);
+    SocialMediaLink saveSocialMediaLink(SocialMediaLink link);
 }

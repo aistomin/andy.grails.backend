@@ -16,6 +16,7 @@
 package com.github.aistomin.andy.grails.backend.controllers.configuration;
 
 import com.github.aistomin.andy.grails.backend.services.ConfigurationService;
+import com.github.aistomin.andy.grails.backend.services.mappers.SocialMediaLinkMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,12 +39,22 @@ public class ConfigurationController {
     private final ConfigurationService conf;
 
     /**
+     * Social media link mapper.
+     */
+    private final SocialMediaLinkMapper socialMediaLinkMapper;
+
+    /**
      * Ctor.
      *
      * @param service Configuration service.
+     * @param mapper Social media link mapper.
      */
-    public ConfigurationController(final ConfigurationService service) {
+    public ConfigurationController(
+        final ConfigurationService service,
+        final SocialMediaLinkMapper mapper
+    ) {
         this.conf = service;
+        this.socialMediaLinkMapper = mapper;
     }
 
     /**
@@ -59,6 +70,6 @@ public class ConfigurationController {
             "ConfigurationController.socialMediaLinks returns {} links.",
             links.size()
         );
-        return links;
+        return links.stream().map(socialMediaLinkMapper::toDto).toList();
     }
 }

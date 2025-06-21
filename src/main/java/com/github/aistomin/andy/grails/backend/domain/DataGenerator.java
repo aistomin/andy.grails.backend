@@ -15,9 +15,9 @@
  */
 package com.github.aistomin.andy.grails.backend.domain;
 
-import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialMediaLinkDto;
 import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
 import com.github.aistomin.andy.grails.backend.model.SocialMedia;
+import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
 import com.github.aistomin.andy.grails.backend.services.ConfigurationService;
 import com.github.aistomin.andy.grails.backend.services.VideoService;
 import lombok.extern.slf4j.Slf4j;
@@ -237,28 +237,28 @@ public final class DataGenerator {
         if (configuration.findAllSocialMediaLinks().isEmpty()) {
             log.debug("No social media links found. Let's generate them .....");
             configuration.saveSocialMediaLink(
-                new SocialMediaLinkDto(
+                new SocialMediaLink(
                     null,
                     SocialMedia.YOUTUBE,
                     "https://www.youtube.com/@andygrails"
                 )
             );
             configuration.saveSocialMediaLink(
-                new SocialMediaLinkDto(
+                new SocialMediaLink(
                     null,
                     SocialMedia.INSTAGRAM,
                     "https://www.instagram.com/andy.grails/"
                 )
             );
             configuration.saveSocialMediaLink(
-                new SocialMediaLinkDto(
+                new SocialMediaLink(
                     null,
                     SocialMedia.FACEBOOK,
                     "https://www.facebook.com/profile.php?id=100074082643728"
                 )
             );
             configuration.saveSocialMediaLink(
-                new SocialMediaLinkDto(
+                new SocialMediaLink(
                     null,
                     SocialMedia.GITHUB,
                     "https://github.com/aistomin"

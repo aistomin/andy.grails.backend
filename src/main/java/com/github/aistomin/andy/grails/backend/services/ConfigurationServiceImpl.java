@@ -15,9 +15,8 @@
  */
 package com.github.aistomin.andy.grails.backend.services;
 
-import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialMediaLinkDto;
+import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
 import com.github.aistomin.andy.grails.backend.model.SocialMediaLinkRepository;
-import com.github.aistomin.andy.grails.backend.services.mappers.SocialMediaLinkMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -38,32 +37,23 @@ public final class ConfigurationServiceImpl implements ConfigurationService {
     private final SocialMediaLinkRepository links;
 
     /**
-     * Entity to DTO mapper.
-     */
-    private final SocialMediaLinkMapper mapper;
-
-    /**
      * Ctor.
      *
      * @param repo Social media links repo.
-     * @param map Entity to DTO mapper.
      */
     public ConfigurationServiceImpl(
-        final SocialMediaLinkRepository repo,
-        final SocialMediaLinkMapper map
+        final SocialMediaLinkRepository repo
     ) {
         this.links = repo;
-        this.mapper = map;
     }
 
     @Override
-    public List<SocialMediaLinkDto> findAllSocialMediaLinks() {
+    public List<SocialMediaLink> findAllSocialMediaLinks() {
         log.debug(
             "ConfigurationServiceImpl.findAllSocialMediaLinks is called ....."
         );
         final var result = this.links.findAll()
             .stream()
-            .map(mapper::toDto)
             .toList();
         log.debug(
             "ConfigurationServiceImpl.findAllSocialMediaLinks got {} links.",
@@ -73,14 +63,14 @@ public final class ConfigurationServiceImpl implements ConfigurationService {
     }
 
     @Override
-    public SocialMediaLinkDto saveSocialMediaLink(
-        final SocialMediaLinkDto link
+    public SocialMediaLink saveSocialMediaLink(
+        final SocialMediaLink link
     ) {
         log.debug(
             "ConfigurationServiceImpl.saveSocialMediaLink is called {} .....",
             link
         );
-        final var result = mapper.toDto(links.save(mapper.toEntity(link)));
+        final var result = links.save(link);
         log.debug(
             "ConfigurationServiceImpl.saveSocialMediaLink saved: {}.",
             result
