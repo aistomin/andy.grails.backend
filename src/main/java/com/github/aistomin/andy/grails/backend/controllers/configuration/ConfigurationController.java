@@ -65,11 +65,14 @@ public class ConfigurationController {
     @GetMapping(path = "/social/media/links")
     public List<SocialMediaLinkDto> socialMediaLinks() {
         log.info("ConfigurationController.socialMediaLinks is called .....");
-        final var links = conf.findAllSocialMediaLinks();
+        final var links = conf.findAllSocialMediaLinks()
+            .stream()
+            .map(socialMediaLinkMapper::toDto)
+            .toList();
         log.info(
             "ConfigurationController.socialMediaLinks returns {} links.",
             links.size()
         );
-        return links.stream().map(socialMediaLinkMapper::toDto).toList();
+        return links;
     }
 }
