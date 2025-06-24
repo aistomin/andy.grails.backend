@@ -22,7 +22,7 @@ branch, if they look correct. To avoid frustration, before sending us your pull
 request please run full Maven build:
 
 ```
-$ mvn clean install package
+$ mvn clean install package javadoc:javadoc
 ```
 **Note:** We use Testcontainers — make sure Docker is running when you build.
 Also, check the [system requirements](#system-requirements).
