@@ -15,7 +15,7 @@
  */
 
 /**
- * DTO <-> Entity mappers.
+ * DTO to Entity mappers.
  *
  * @since 0.3
  */
