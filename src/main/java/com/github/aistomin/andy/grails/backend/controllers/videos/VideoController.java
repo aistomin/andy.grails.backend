@@ -80,7 +80,7 @@ public class VideoController {
      * @param id The ID.
      * @return Found video.
      */
-    /*
+
     @GetMapping("/{id}")
     public VideoDto findById(final @PathVariable long id) {
         log.info("VideoController.findById is called with ID = {} .....", id);
@@ -88,17 +88,7 @@ public class VideoController {
         log.info("VideoController.findById returns {}.", video);
         return video;
     }
-    */
 
-    @GetMapping("/{id}")
-    public VideoDto findById(@PathVariable long id) {
-        log.info("VideoController.findById is called with ID = {} .....", id);
-        final var video = this.videos.findById(id);
-        if (video == null) {
-            throw new RuntimeException("Video with ID " + id + " not found");
-        }
-        final var dto = mapper.toDto(video);
-        log.info("VideoController.findById returns {}.", dto);
-        return dto;
-    }
+
+
 }
