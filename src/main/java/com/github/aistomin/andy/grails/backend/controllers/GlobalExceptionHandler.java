@@ -1,21 +1,21 @@
 package com.github.aistomin.andy.grails.backend.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
-public class GlobalExceptionHandler extends RuntimeException {
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleEntityNotFound(EntityNotFoundException ex) {
-        Map<String, String> response = new HashMap<>();
-        response.put("error", ex.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
+import java.util.Map;
+import java.util.HashMap;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
+    public ResponseEntity<Map<String, String>> handleAnyException(Exception ex) {
         Map<String, String> response = new HashMap<>();
-        response.put("error", "Internal server error");
+        response.put("error", "Internal server error occurred");
+        ex.printStackTrace();
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }

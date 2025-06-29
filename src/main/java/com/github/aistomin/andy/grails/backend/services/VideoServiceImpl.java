@@ -65,8 +65,7 @@ public final class VideoServiceImpl implements VideoService {
             "VideoServiceImpl.findById is called with ID = {} .....", id
         );
         final var result = videos.findById(id)
-                .orElseThrow(() -> new javax.persistence.EntityNotFoundException("Video with ID " + id + " not found"));
-
+                .orElseThrow(() -> new RuntimeException("Video with ID " + id + " not found"));
         log.debug(
             "VideoServiceImpl.findById result: {}.", result
         );
