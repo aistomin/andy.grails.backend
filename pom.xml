@@ -14,7 +14,7 @@
 		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<lombok.version>1.18.38</lombok.version>
-		<testcontainers.version>1.21.2</testcontainers.version>
+		<testcontainers.version>1.21.3</testcontainers.version>
 		<linkXRef>false</linkXRef>
 	</properties>
 	<groupId>com.github.aistomin</groupId>
