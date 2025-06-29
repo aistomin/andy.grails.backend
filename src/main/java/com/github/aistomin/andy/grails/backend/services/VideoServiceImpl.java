@@ -64,7 +64,8 @@ public final class VideoServiceImpl implements VideoService {
         log.debug(
             "VideoServiceImpl.findById is called with ID = {} .....", id
         );
-        final var result = videos.findById(id).orElse(null);
+        final var result = videos.findById(id)
+                .orElseThrow(() -> new RuntimeException("Video with ID " + id + " not found"));
         log.debug(
             "VideoServiceImpl.findById result: {}.", result
         );

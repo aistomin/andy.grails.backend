@@ -80,6 +80,7 @@ public class VideoController {
      * @param id The ID.
      * @return Found video.
      */
+
     @GetMapping("/{id}")
     public VideoDto findById(final @PathVariable long id) {
         log.info("VideoController.findById is called with ID = {} .....", id);
@@ -87,4 +88,7 @@ public class VideoController {
         log.info("VideoController.findById returns {}.", video);
         return video;
     }
+
+
+
 }
