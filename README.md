@@ -7,12 +7,14 @@
 - JDK 21 or higher.
 - Apache Maven 3.9.8 or higher.
 - Docker 28.2.2 or higher.
+- Docker Desktop 4.42.1 or higher. 
 
 ## How to test and run the app?
 
-To test the app run: `mvn clean install package`
+To build and test the app run: `mvn clean install package`
 
-To start the application run: `mvn spring-boot:run`
+To start the app run: `docker-compose up --build`
+> The API should be available at [http://localhost:8080](http://localhost:8080)
 
 ## How to Contribute
 Do you want to help us with the project? We will be more than just happy.
