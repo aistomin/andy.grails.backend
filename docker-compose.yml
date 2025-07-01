@@ -12,6 +12,9 @@ services:
       - andy_grails_postgres_data:/var/lib/postgresql/data
 
   backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: andy-grails-backend
     container_name: andy_grails_backend
     depends_on:
