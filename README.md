@@ -11,10 +11,18 @@
 
 ## How to test and run the app?
 
-To build and test the app run: `mvn clean install package`
+To build and test the app run: `./mvnw clean install package javadoc:javadoc`
 
 To start the app run: `docker-compose up --build`
 > The API should be available at [http://localhost:8080](http://localhost:8080)
+
+## API Documentation
+Need to check the API documentation? Use these links:
+
+ - Swagger UI: http://localhost:8080/swagger-ui/index.html
+Interactive docs, try out endpoints.
+ - OpenAPI JSON: http://localhost:8080/v3/api-docs
+Raw spec, for tools or integrations.
 
 ## How to Contribute
 Do you want to help us with the project? We will be more than just happy.
@@ -24,7 +32,7 @@ branch, if they look correct. To avoid frustration, before sending us your pull
 request please run full Maven build:
 
 ```
-$ mvn clean install package javadoc:javadoc
+./mvnw clean install package javadoc:javadoc
 ```
 **Note:** We use Testcontainers — make sure Docker is running when you build.
 Also, check the [system requirements](#system-requirements).
