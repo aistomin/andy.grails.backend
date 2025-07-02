@@ -20,7 +20,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Test for {@link VideoController}.
@@ -71,5 +73,25 @@ class VideoControllerTest extends IntegrationTest {
             "Greensleeves(English traditional) // Andrej Istomin",
             video.title()
         );
+    }
+
+    /**
+     * Test that we return 404 when video is not found.
+     */
+    @Test
+    void testFindByIdNotFound() {
+        final var response = template.exchange(
+            String.format("/videos/%d", Integer.MAX_VALUE),
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<Map>() {
+            }
+        );
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        final var message = response.getBody();
+        Assertions.assertEquals(
+            HttpStatus.NOT_FOUND.value(), message.get("status")
+        );
+        Assertions.assertEquals("Video not found", message.get("message"));
     }
 }

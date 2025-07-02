@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend.controllers.videos;
 
+import com.github.aistomin.andy.grails.backend.exceptions.NotFoundException;
 import com.github.aistomin.andy.grails.backend.services.VideoService;
 import com.github.aistomin.andy.grails.backend.services.mappers.VideoMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -83,7 +84,12 @@ public class VideoController {
     @GetMapping("/{id}")
     public VideoDto findById(final @PathVariable long id) {
         log.info("VideoController.findById is called with ID = {} .....", id);
-        final var video = mapper.toDto(this.videos.findById(id));
+        final var found = this.videos.findById(id);
+        if (found == null) {
+            log.info("Video with ID = {} not found.", id);
+            throw new NotFoundException("Video not found");
+        }
+        final var video = mapper.toDto(found);
         log.info("VideoController.findById returns {}.", video);
         return video;
     }
