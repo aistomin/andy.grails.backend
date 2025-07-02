@@ -48,4 +48,17 @@ public final class GlobalExceptionHandler {
             "Internal server error occurred."
         );
     }
+
+    /**
+     * Handle exception that we throw when requested resource is not found.
+     *
+     * @param ex The not found exception.
+     * @return Error response.
+     */
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleNotFoundException(final NotFoundException ex) {
+        return new ErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
 }
