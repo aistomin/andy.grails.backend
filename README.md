@@ -13,7 +13,15 @@
 
 To build and test the app run: `./mvnw clean install package javadoc:javadoc`
 
-To start the app run: `docker-compose up --build`
+To start the app, you have two options:
+
+1. **Recommended (ensures fresh build every time):**
+   ```bash
+   ./start.sh
+2. Alternative (manual):
+    ```bash
+    docker-compose up --build
+
 > The API should be available at [http://localhost:8080](http://localhost:8080)
 
 ## API Documentation
