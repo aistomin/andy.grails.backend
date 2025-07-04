@@ -3,9 +3,9 @@ services:
     image: postgres:17.5
     container_name: andy_grails_db
     environment:
-      POSTGRES_DB: andy_grails
-      POSTGRES_USER: andy
-      POSTGRES_PASSWORD: secure_password
+      POSTGRES_DB: ${DB_NAME:-andy_grails}
+      POSTGRES_USER: ${DB_USER:-andy}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-andy}
     ports:
       - "55432:5432"
     volumes:
@@ -24,9 +24,9 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 5432
-      DB_NAME: andy_grails
-      DB_USER: andy
-      DB_PASSWORD: secure_password
+      DB_NAME: ${DB_NAME:-andy_grails}
+      DB_USER: ${DB_USER:-andy}
+      DB_PASSWORD: ${DB_PASSWORD:-andy}
 
 volumes:
   andy_grails_postgres_data:
