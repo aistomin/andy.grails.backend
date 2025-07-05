@@ -4,10 +4,13 @@
 [![codecov](https://codecov.io/gh/aistomin/andy.grails.backend/graph/badge.svg?token=WZFAART6QM)](https://codecov.io/gh/aistomin/andy.grails.backend)
 
 ## System Requirements
-- JDK 21 or higher.
-- Apache Maven 3.9.8 or higher.
-- Docker 28.2.2 or higher.
-- Docker Desktop 4.42.1 or higher. 
+
+- **Docker** 28.2.2 or higher
+
+> For backend development, if you want to run app or tests directly on your computer:
+> - **Docker Desktop** 4.42.1 or higher
+> - **JDK** 21 or higher
+> - **Apache Maven** 3.9.8 or higher
 
 ## How to test and run the app?
 
