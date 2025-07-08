@@ -2,13 +2,15 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]  # Trigger only on direct pushes to master
+    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]  # Trigger on pull requests targeting master
+    branches: [ "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      sha_short: ${{ steps.vars.outputs.sha_short }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -24,11 +26,42 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: aistomin/andy.grails.backend
+      - name: Extract short SHA
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+  publish_to_docker_hub:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: andygrails
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            andygrails/andy-grails-backend:latest
+            andygrails/andy-grails-backend:${{ needs.build.outputs.sha_short }}
+      - name: Confirm Docker image is on Docker Hub
+        run: |
+          echo "🔍 Verifying Docker image exists on Docker Hub..."
+          curl -sSf https://hub.docker.com/v2/repositories/andygrails/andy-grails-backend/tags/${{ needs.build.outputs.sha_short }}/ > /dev/null \
+          && echo "✅ Docker image tag '${{ needs.build.outputs.sha_short }}' found on Docker Hub." \
+          || (echo "❌ Docker image not found on Docker Hub." && exit 1)
 
   update_parent_repo:
     runs-on: ubuntu-latest
-    needs: build  # Ensure this runs only after the 'build' job is successful
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Only run on direct pushes to master
+    needs: publish_to_docker_hub
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     steps:
       - name: Trigger parent repo to update submodule
         run: |
