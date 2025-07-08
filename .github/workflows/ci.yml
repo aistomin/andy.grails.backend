@@ -50,6 +50,16 @@ jobs:
           tags: |
             andygrails/andy-grails-backend:latest
             andygrails/andy-grails-backend:${{ needs.build.outputs.sha_short }}
+      - name: Confirm Docker image build success
+        run: |
+          echo "🧪 Checking if Docker image exists locally..."
+          docker image inspect andygrails/andy-grails-backend:${{ needs.build.outputs.sha_short }} > /dev/null 2>&1
+          if [ $? -ne 0 ]; then
+            echo "❌ Docker image andygrails/andy-grails-backend:${{ needs.build.outputs.sha_short }} was not built successfully."
+            exit 1
+          else
+            echo "✅ Docker image built successfully."
+          fi
 
   update_parent_repo:
     runs-on: ubuntu-latest
