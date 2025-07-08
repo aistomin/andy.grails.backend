@@ -17,7 +17,7 @@ FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copy the built jar from the builder stage
-COPY target/*.war app.war
+COPY --from=builder /app/target/*.war app.war
 
 # Expose the port your app runs on (usually 8080)
 EXPOSE 8080
