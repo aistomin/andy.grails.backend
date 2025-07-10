@@ -27,6 +27,8 @@ To start the app, you have two options:
 
 > The API should be available at [http://localhost:8080](http://localhost:8080)
 
+Docker image is publicly available at [Docker Hub](https://hub.docker.com/r/andygrails/andy-grails-backend).
+
 ## API Documentation
 Need to check the API documentation? Use these links:
 
