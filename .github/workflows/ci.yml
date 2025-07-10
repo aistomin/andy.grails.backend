@@ -53,10 +53,10 @@ jobs:
             andygrails/andy-grails-backend:${{ needs.build.outputs.sha_short }}
       - name: Confirm Docker image is on Docker Hub
         run: |
-          echo "🔍 Verifying Docker image exists on Docker Hub..."
-          curl -sSf https://hub.docker.com/v2/repositories/andygrails/andy-grails-backend/tags/${{ needs.build.outputs.sha_short }}/ > /dev/null \
-          && echo "✅ Docker image tag '${{ needs.build.outputs.sha_short }}' found on Docker Hub." \
-          || (echo "❌ Docker image not found on Docker Hub." && exit 1)
+          echo "🔍 Verifying Docker image exists on Docker Hub by pulling it..."
+          docker pull andygrails/andy-grails-backend:${{ needs.build.outputs.sha_short }} \
+            && echo "✅ Docker image pulled successfully." \
+            || (echo "❌ Failed to pull Docker image." && exit 1)
 
   update_parent_repo:
     runs-on: ubuntu-latest
