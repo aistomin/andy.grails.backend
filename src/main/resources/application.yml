@@ -9,3 +9,15 @@ spring:
     hibernate:
       ddl-auto: create-drop
   application.name: andy.grails.backend
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+info:
+  app:
+    name: andy.grails.backend
+    description: Andy Grails' Website. Backend API.
