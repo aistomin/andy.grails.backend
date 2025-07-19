@@ -22,7 +22,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.time.ZonedDateTime;
 
@@ -33,11 +32,16 @@ import java.time.ZonedDateTime;
  */
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @ToString()
 @Data
 public final class Video {
+
+    /**
+     * Ctor.
+     */
+    public Video() {
+    }
 
     /**
      * Video ID.

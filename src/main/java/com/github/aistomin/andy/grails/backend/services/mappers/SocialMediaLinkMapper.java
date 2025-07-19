@@ -28,6 +28,12 @@ import org.springframework.stereotype.Component;
 public class SocialMediaLinkMapper {
 
     /**
+     * Ctor.
+     */
+    public SocialMediaLinkMapper() {
+    }
+
+    /**
      * Convert social media link entity to DTO.
      *
      * @param link The social media link entity that needs to be converted.

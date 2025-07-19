@@ -32,6 +32,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public final class GlobalExceptionHandler {
 
     /**
+     * Ctor.
+     */
+    public GlobalExceptionHandler() {
+    }
+
+    /**
      * Handle any exception that is not caught and processed by dedicated
      * handlers.
      *

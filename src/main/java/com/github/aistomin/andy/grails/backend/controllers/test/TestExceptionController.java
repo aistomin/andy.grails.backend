@@ -29,6 +29,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestExceptionController {
 
     /**
+     * Ctor.
+     */
+    public TestExceptionController() {
+    }
+
+    /**
      * Simulate unhandled error in the controller.
      *
      * @return Nothing.
