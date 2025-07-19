@@ -28,6 +28,12 @@ import org.springframework.stereotype.Component;
 public class VideoMapper {
 
     /**
+     * Ctor.
+     */
+    public VideoMapper() {
+    }
+
+    /**
      * Convert video entity to DTO.
      *
      * @param video The video entity that needs to be converted.

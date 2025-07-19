@@ -15,26 +15,19 @@
  */
 package com.github.aistomin.andy.grails.backend;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * Servlet initialiser.
+ * Tests for {@link ServletInitializer}.
  *
- * @since 0.1
+ * @since 1.0
  */
-public final class ServletInitializer extends SpringBootServletInitializer {
+class ServletInitializerTest {
 
-    /**
-     * Ctor.
-     */
-    public ServletInitializer() {
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(
-        final SpringApplicationBuilder builder
-    ) {
-        return super.configure(builder);
+    @Test
+    void configure() {
+        final var initializer = new ServletInitializer();
+        initializer.configure(new SpringApplicationBuilder(Object.class));
     }
 }

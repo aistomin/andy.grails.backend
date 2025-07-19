@@ -24,7 +24,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -34,11 +33,16 @@ import lombok.ToString;
  */
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @ToString()
 @Data
 public final class SocialMediaLink {
+
+    /**
+     * Ctor.
+     */
+    public SocialMediaLink() {
+    }
 
     /**
      * Social media link ID.

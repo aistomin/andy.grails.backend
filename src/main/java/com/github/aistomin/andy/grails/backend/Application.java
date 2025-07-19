@@ -25,6 +25,8 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * Main application class.
+ *
+ * @since 0.1
  */
 @SpringBootApplication
 @Slf4j

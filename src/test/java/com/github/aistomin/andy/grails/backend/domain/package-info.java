@@ -13,28 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.andy.grails.backend;
-
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * Servlet initialiser.
+ * Tests for domain classes and utilities.
  *
- * @since 0.1
+ * @since 1.0
  */
-public final class ServletInitializer extends SpringBootServletInitializer {
-
-    /**
-     * Ctor.
-     */
-    public ServletInitializer() {
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(
-        final SpringApplicationBuilder builder
-    ) {
-        return super.configure(builder);
-    }
-}
+package com.github.aistomin.andy.grails.backend.domain;
