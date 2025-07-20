@@ -22,6 +22,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean install package
       - name: Upload coverage reports to Codecov
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
