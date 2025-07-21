@@ -3,6 +3,12 @@
 [![CI](https://github.com/aistomin/andy.grails.backend/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/aistomin/andy.grails.backend/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/aistomin/andy.grails.backend/graph/badge.svg?token=WZFAART6QM)](https://codecov.io/gh/aistomin/andy.grails.backend)
 
+This is the backend service for the **Andy Grails** website.  
+It is a Java Spring Boot application providing RESTful APIs to serve music data, media, and metadata consumed by the frontend.
+
+For the full project including frontend and main repository, visit:  
+[https://github.com/aistomin/andy.grails](https://github.com/aistomin/andy.grails)
+
 ## System Requirements
 
 - **Docker** 28.2.2 or higher
