@@ -4,10 +4,7 @@ spring:
     username: ${DB_USER:root}
     password: ${DB_PASSWORD:root}
   jpa:
-    show-sql: false
     open-in-view: false
-    hibernate:
-      ddl-auto: create-drop
   application.name: andy.grails.backend
 management:
   endpoints:

@@ -134,6 +134,9 @@
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
 					<argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar}</argLine>
+					<systemPropertyVariables>
+						<spring.profiles.active>test</spring.profiles.active>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 			<plugin>
