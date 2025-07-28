@@ -28,7 +28,6 @@ import org.testcontainers.junit.jupiter.Container;
  * @since 0.3
  */
 @SuppressWarnings({
-    "checkstyle:MagicNumber",
     "checkstyle:VisibilityModifier"
 })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
