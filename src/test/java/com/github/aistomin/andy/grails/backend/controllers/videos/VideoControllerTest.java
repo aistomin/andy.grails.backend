@@ -41,7 +41,7 @@ class VideoControllerTest extends IntegrationTest {
      */
     @Test
     void testListVideos() {
-        final var response = template.exchange(
+        final var response = template().exchange(
             "/videos",
             HttpMethod.GET,
             null,
@@ -61,7 +61,7 @@ class VideoControllerTest extends IntegrationTest {
     @Test
     void testFindById() {
         final var six = 6;
-        final var response = template.exchange(
+        final var response = template().exchange(
             String.format("/videos/%d", six),
             HttpMethod.GET,
             null,
@@ -80,7 +80,7 @@ class VideoControllerTest extends IntegrationTest {
      */
     @Test
     void testFindByIdNotFound() {
-        final var response = template.exchange(
+        final var response = template().exchange(
             String.format("/videos/%d", Integer.MAX_VALUE),
             HttpMethod.GET,
             null,

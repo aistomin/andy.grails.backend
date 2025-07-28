@@ -27,9 +27,6 @@ import org.testcontainers.junit.jupiter.Container;
  *
  * @since 0.3
  */
-@SuppressWarnings({
-    "checkstyle:VisibilityModifier"
-})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class IntegrationTest {
 
@@ -37,7 +34,7 @@ public abstract class IntegrationTest {
      * Test REST template.
      */
     @Autowired
-    protected TestRestTemplate template;
+    private TestRestTemplate template;
 
     /**
      * Postgres container.
@@ -49,5 +46,14 @@ public abstract class IntegrationTest {
 
     static {
         POSTGRES.start();
+    }
+
+    /**
+     * Get test REST template.
+     *
+     * @return Test REST template.
+     */
+    protected TestRestTemplate template() {
+        return this.template;
     }
 }

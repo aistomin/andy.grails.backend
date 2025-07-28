@@ -40,7 +40,7 @@ class ConfigurationControllerTest extends IntegrationTest {
      */
     @Test
     void testSocialMediaLinks() {
-        final var response = template.exchange(
+        final var response = template().exchange(
             "/configuration/social/media/links",
             HttpMethod.GET,
             null,
