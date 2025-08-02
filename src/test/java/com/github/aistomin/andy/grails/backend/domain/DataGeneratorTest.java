@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend.domain;
 
+import com.github.aistomin.andy.grails.backend.model.DataGenerator;
 import com.github.aistomin.andy.grails.backend.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

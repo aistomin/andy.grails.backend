@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.github.aistomin.andy.grails.backend.controllers.test.TestExceptionController;
-import com.github.aistomin.andy.grails.backend.domain.DataGenerator;
+import com.github.aistomin.andy.grails.backend.model.DataGenerator;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
