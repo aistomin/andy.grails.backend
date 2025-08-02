@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.andy.grails.backend.domain;
+package com.github.aistomin.andy.grails.backend.model;
 
-import com.github.aistomin.andy.grails.backend.model.SocialMedia;
-import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
-import com.github.aistomin.andy.grails.backend.model.Video;
 import com.github.aistomin.andy.grails.backend.services.ConfigurationService;
 import com.github.aistomin.andy.grails.backend.services.VideoService;
 import lombok.extern.slf4j.Slf4j;

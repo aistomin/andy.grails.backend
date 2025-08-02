@@ -15,7 +15,7 @@
  */
 package com.github.aistomin.andy.grails.backend;
 
-import com.github.aistomin.andy.grails.backend.domain.DataGenerator;
+import com.github.aistomin.andy.grails.backend.model.DataGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
