@@ -195,10 +195,7 @@ public final class DataGenerator {
                     LocalDateTime.of(2020, Month.JUNE, 13, 11, 33),
                     zone
                 ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2020, Month.JUNE, 13, 16, 22),
-                    zone
-                )
+                null
             ));
             videos.save(new Video(
                 null,
@@ -211,10 +208,7 @@ public final class DataGenerator {
                     LocalDateTime.of(2020, Month.APRIL, 9, 0, 1),
                     zone
                 ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2020, Month.APRIL, 9, 11, 5),
-                    zone
-                )
+                null
             ));
             log.debug("Videos were created.");
             return videos.findAll().size();
