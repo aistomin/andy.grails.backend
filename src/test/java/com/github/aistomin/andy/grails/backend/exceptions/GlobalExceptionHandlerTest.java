@@ -20,13 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.github.aistomin.andy.grails.backend.controllers.test.TestExceptionController;
-import com.github.aistomin.andy.grails.backend.model.DataGenerator;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,10 +34,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * @since 0.3
  */
 @WebMvcTest(controllers = TestExceptionController.class)
-@Import({
-    GlobalExceptionHandler.class,
-    GlobalExceptionHandlerTest.TestConfig.class
-})
+@Import(GlobalExceptionHandler.class)
 class GlobalExceptionHandlerTest {
 
     /**
@@ -62,32 +55,10 @@ class GlobalExceptionHandlerTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(
                 jsonPath("$.status").value(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value()
-                )
-            )
+                    HttpStatus.INTERNAL_SERVER_ERROR.value()))
             .andExpect(
-                jsonPath("$.message").value("Internal server error occurred.")
+                jsonPath("$.message")
+                    .value("Internal server error occurred.")
             );
-    }
-
-    /**
-     * We mock data generator here.
-     *
-     * @since 0.3
-     * @todo: Issue #96. Let's decouple DataGenerator from Application and
-     * remove this test configuration.
-     */
-    @TestConfiguration
-    static class TestConfig {
-
-        /**
-         * Mock data generator.
-         *
-         * @return Mock object.
-         */
-        @Bean
-        public DataGenerator dataGenerator() {
-            return Mockito.mock(DataGenerator.class);
-        }
     }
 }
