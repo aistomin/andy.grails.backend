@@ -15,13 +15,9 @@
  */
 package com.github.aistomin.andy.grails.backend;
 
-import com.github.aistomin.andy.grails.backend.model.DataGenerator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Main application class.
@@ -30,38 +26,13 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 @Slf4j
-public class Application {
+public final class Application {
 
     /**
-     * Data generator.
+     * Private constructor to prevent instantiation.
      */
-    private final DataGenerator generator;
-
-    /**
-     * Ctor.
-     *
-     * @param gen Data generator.
-     */
-    protected Application(final DataGenerator gen) {
-        this.generator = gen;
-    }
-
-    /**
-     * Command line runner.
-     *
-     * @param ctx Application context.
-     * @return Runner.
-     */
-    @Bean
-    public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
-        return args -> {
-            log.info("Application is starting .....");
-            final var videos = generator.generateVideosIfNecessary();
-            log.info("{} videos generated.", videos);
-            final var conf = generator.generateConfigurationIfNecessary();
-            log.info("{} configuration entities generated.", conf);
-            log.info("Application is up and running.");
-        };
+    private Application() {
+        // Utility class
     }
 
     /**
@@ -70,6 +41,8 @@ public class Application {
      * @param args Command line arguments.
      */
     public static void main(final String[] args) {
+        log.info("Starting Andy Grails Backend Application...");
         SpringApplication.run(Application.class, args);
+        log.info("Andy Grails Backend Application started successfully.");
     }
 }
