@@ -17,21 +17,15 @@ package com.github.aistomin.andy.grails.backend.services.mappers;
 
 import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialMediaLinkDto;
 import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
 /**
- * Social media link mapper.
+ * Social media link mapper using MapStruct.
  *
  * @since 0.3
  */
-@Component
-public class SocialMediaLinkMapper {
-
-    /**
-     * Ctor.
-     */
-    public SocialMediaLinkMapper() {
-    }
+@Mapper(componentModel = "spring")
+public interface SocialMediaLinkMapper {
 
     /**
      * Convert social media link entity to DTO.
@@ -39,16 +33,7 @@ public class SocialMediaLinkMapper {
      * @param link The social media link entity that needs to be converted.
      * @return Social media link DTO.
      */
-    public SocialMediaLinkDto toDto(final SocialMediaLink link) {
-        if (link == null) {
-            return null;
-        }
-        return new SocialMediaLinkDto(
-            link.getId(),
-            link.getSocialMedia(),
-            link.getUrl()
-        );
-    }
+    SocialMediaLinkDto toDto(SocialMediaLink link);
 
     /**
      * Convert social media link DTO to the entity.
@@ -56,14 +41,5 @@ public class SocialMediaLinkMapper {
      * @param dto The link DTO that needs to be converted to entity.
      * @return Social media link entity.
      */
-    public SocialMediaLink toEntity(final SocialMediaLinkDto dto) {
-        if (dto == null) {
-            return null;
-        }
-        return new SocialMediaLink(
-            dto.id(),
-            dto.socialMedia(),
-            dto.url()
-        );
-    }
+    SocialMediaLink toEntity(SocialMediaLinkDto dto);
 }
