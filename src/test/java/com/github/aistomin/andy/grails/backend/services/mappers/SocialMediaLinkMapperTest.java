@@ -19,9 +19,9 @@ import com.github.aistomin.andy.grails.backend.controllers.configuration.SocialM
 import com.github.aistomin.andy.grails.backend.model.SocialMedia;
 import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mapstruct.factory.Mappers;
 import java.util.Random;
 
 /**
@@ -29,19 +29,25 @@ import java.util.Random;
  *
  * @since 0.3
  */
-@SpringBootTest
 class SocialMediaLinkMapperTest {
 
     /**
      * Social media link mapper to test.
      */
-    @Autowired
     private SocialMediaLinkMapper mapper;
 
     /**
      * Randomiser.
      */
     private final Random rand = new Random();
+
+    /**
+     * Set up the test.
+     */
+    @BeforeEach
+    void setUp() {
+        mapper = Mappers.getMapper(SocialMediaLinkMapper.class);
+    }
 
     /**
      * Check that we can correctly convert entity to DTO using the mapper.
@@ -66,10 +72,9 @@ class SocialMediaLinkMapperTest {
     void testToEntity() {
         Assertions.assertNull(mapper.toEntity(null));
         final var dto = new SocialMediaLinkDto(
-            rand.nextLong(),
-            SocialMedia.INSTAGRAM,
-            String.format("https://%d.com", rand.nextLong())
-        );
+                rand.nextLong(),
+                SocialMedia.INSTAGRAM,
+                String.format("https://%d.com", rand.nextLong()));
         final var link = mapper.toEntity(dto);
         Assertions.assertEquals(dto.id(), link.getId());
         Assertions.assertEquals(dto.socialMedia(), link.getSocialMedia());

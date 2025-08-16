@@ -18,9 +18,9 @@ package com.github.aistomin.andy.grails.backend.services.mappers;
 import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
 import com.github.aistomin.andy.grails.backend.model.Video;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mapstruct.factory.Mappers;
 import java.time.ZonedDateTime;
 import java.util.Random;
 
@@ -29,19 +29,25 @@ import java.util.Random;
  *
  * @since 0.3
  */
-@SpringBootTest
 class VideoMapperTest {
 
     /**
      * Video mapper to test.
      */
-    @Autowired
     private VideoMapper mapper;
 
     /**
      * Randomiser.
      */
     private final Random rand = new Random();
+
+    /**
+     * Set up the test.
+     */
+    @BeforeEach
+    void setUp() {
+        mapper = Mappers.getMapper(VideoMapper.class);
+    }
 
     /**
      * Check that we can correctly convert entity to DTO using the mapper.
@@ -55,7 +61,7 @@ class VideoMapperTest {
         final var title = String.format("Title %d", rand.nextLong());
         video.setTitle(title);
         final var description = String.format(
-            "Description %d", rand.nextLong());
+                "Description %d", rand.nextLong());
         video.setDescription(description);
         final var url = String.format("https://%d.com", rand.nextLong());
         video.setUrl(url);
@@ -85,16 +91,15 @@ class VideoMapperTest {
     void testToEntity() {
         Assertions.assertNull(mapper.toEntity(null));
         final var dto = new VideoDto(
-            rand.nextLong(),
-            String.format("Title %d", rand.nextLong()),
-            String.format(
-                "Description %d", rand.nextLong()),
-            String.format("https://%d.com", rand.nextLong()),
-            Long.valueOf(rand.nextLong()).toString(),
-            Long.valueOf(rand.nextLong()).toString(),
-            ZonedDateTime.now(),
-            ZonedDateTime.now()
-        );
+                rand.nextLong(),
+                String.format("Title %d", rand.nextLong()),
+                String.format(
+                        "Description %d", rand.nextLong()),
+                String.format("https://%d.com", rand.nextLong()),
+                Long.valueOf(rand.nextLong()).toString(),
+                Long.valueOf(rand.nextLong()).toString(),
+                ZonedDateTime.now(),
+                ZonedDateTime.now());
         final var video = mapper.toEntity(dto);
         Assertions.assertEquals(dto.id(), video.getId());
         Assertions.assertEquals(dto.title(), video.getTitle());
@@ -102,8 +107,7 @@ class VideoMapperTest {
         Assertions.assertEquals(dto.url(), video.getUrl());
         Assertions.assertEquals(dto.youtubeId(), video.getYoutubeId());
         Assertions.assertEquals(
-            dto.youtubeChannelId(), video.getYoutubeChannelId()
-        );
+                dto.youtubeChannelId(), video.getYoutubeChannelId());
         Assertions.assertEquals(dto.createdAt(), video.getCreatedAt());
         Assertions.assertEquals(dto.publishedAt(), video.getPublishedAt());
     }
