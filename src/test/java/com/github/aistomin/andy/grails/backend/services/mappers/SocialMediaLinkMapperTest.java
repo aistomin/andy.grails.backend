@@ -20,6 +20,8 @@ import com.github.aistomin.andy.grails.backend.model.SocialMedia;
 import com.github.aistomin.andy.grails.backend.model.SocialMediaLink;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Random;
 
 /**
@@ -27,12 +29,14 @@ import java.util.Random;
  *
  * @since 0.3
  */
+@SpringBootTest
 class SocialMediaLinkMapperTest {
 
     /**
      * Social media link mapper to test.
      */
-    private final SocialMediaLinkMapper mapper = new SocialMediaLinkMapper();
+    @Autowired
+    private SocialMediaLinkMapper mapper;
 
     /**
      * Randomiser.

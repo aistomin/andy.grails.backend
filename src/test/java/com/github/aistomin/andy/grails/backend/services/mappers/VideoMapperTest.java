@@ -19,6 +19,8 @@ import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
 import com.github.aistomin.andy.grails.backend.model.Video;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import java.time.ZonedDateTime;
 import java.util.Random;
 
@@ -27,12 +29,14 @@ import java.util.Random;
  *
  * @since 0.3
  */
+@SpringBootTest
 class VideoMapperTest {
 
     /**
      * Video mapper to test.
      */
-    private final VideoMapper mapper = new VideoMapper();
+    @Autowired
+    private VideoMapper mapper;
 
     /**
      * Randomiser.
@@ -51,8 +55,7 @@ class VideoMapperTest {
         final var title = String.format("Title %d", rand.nextLong());
         video.setTitle(title);
         final var description = String.format(
-            "Description %d", rand.nextLong()
-        );
+            "Description %d", rand.nextLong());
         video.setDescription(description);
         final var url = String.format("https://%d.com", rand.nextLong());
         video.setUrl(url);
@@ -85,8 +88,7 @@ class VideoMapperTest {
             rand.nextLong(),
             String.format("Title %d", rand.nextLong()),
             String.format(
-                "Description %d", rand.nextLong()
-            ),
+                "Description %d", rand.nextLong()),
             String.format("https://%d.com", rand.nextLong()),
             Long.valueOf(rand.nextLong()).toString(),
             Long.valueOf(rand.nextLong()).toString(),

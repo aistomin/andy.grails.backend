@@ -17,21 +17,15 @@ package com.github.aistomin.andy.grails.backend.services.mappers;
 
 import com.github.aistomin.andy.grails.backend.controllers.videos.VideoDto;
 import com.github.aistomin.andy.grails.backend.model.Video;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
 /**
- * Video mapper.
+ * Video mapper using MapStruct.
  *
  * @since 0.3
  */
-@Component
-public class VideoMapper {
-
-    /**
-     * Ctor.
-     */
-    public VideoMapper() {
-    }
+@Mapper(componentModel = "spring")
+public interface VideoMapper {
 
     /**
      * Convert video entity to DTO.
@@ -39,21 +33,7 @@ public class VideoMapper {
      * @param video The video entity that needs to be converted.
      * @return Video DTO.
      */
-    public VideoDto toDto(final Video video) {
-        if (video == null) {
-            return null;
-        }
-        return new VideoDto(
-            video.getId(),
-            video.getTitle(),
-            video.getDescription(),
-            video.getUrl(),
-            video.getYoutubeId(),
-            video.getYoutubeChannelId(),
-            video.getCreatedAt(),
-            video.getPublishedAt()
-        );
-    }
+    VideoDto toDto(Video video);
 
     /**
      * Convert video DTO to the entity.
@@ -61,19 +41,5 @@ public class VideoMapper {
      * @param dto The video DTO that needs to be converted to entity.
      * @return Video entity.
      */
-    public Video toEntity(final VideoDto dto) {
-        if (dto == null) {
-            return null;
-        }
-        return new Video(
-            dto.id(),
-            dto.title(),
-            dto.description(),
-            dto.url(),
-            dto.youtubeId(),
-            dto.youtubeChannelId(),
-            dto.createdAt(),
-            dto.publishedAt()
-        );
-    }
+    Video toEntity(VideoDto dto);
 }
