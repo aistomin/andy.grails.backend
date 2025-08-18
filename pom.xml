@@ -18,6 +18,7 @@
 		<mapstruct.version>1.6.3</mapstruct.version>
 		<linkXRef>false</linkXRef>
 	</properties>
+	
 	<groupId>com.github.aistomin</groupId>
 	<artifactId>andy.grails.backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -296,7 +297,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.8.0</version>
 				<configuration>
 					<source>21</source>
 					<doclint>none</doclint>
@@ -313,7 +313,6 @@
 					<excludes>
 						<exclude>**/mappers/*Impl.java</exclude>
 					</excludes>
-					<sourcepath>${project.build.sourceDirectory}</sourcepath>
 				</configuration>
 			</plugin>
 			<plugin>
