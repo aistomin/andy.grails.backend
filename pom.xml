@@ -339,7 +339,7 @@
 						</goals>
 						<configuration>
 							<excludes>
-								<exclude>com/github/aistomin/andy/grails/backend/Application.class</exclude>
+								<exclude>de/andy/grails/Application.class</exclude>
 							</excludes>
 							<rules>
 								<rule>
