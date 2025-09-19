@@ -19,12 +19,12 @@
 		<linkXRef>false</linkXRef>
 	</properties>
 	
-	<groupId>com.github.aistomin</groupId>
+	<groupId>de.andy.grails</groupId>
 	<artifactId>andy.grails.backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>andy.grails.backend</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Andy Grails' Website. Backend</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -258,7 +258,7 @@
 				<artifactId>spotbugs-maven-plugin</artifactId>
 				<version>4.9.3.0</version>
 				<configuration>
-					<onlyAnalyze>com.github.aistomin.*</onlyAnalyze>
+					<onlyAnalyze>de.andy.grails.*</onlyAnalyze>
 					<effort>max</effort>
 					<failOnError>true</failOnError>
 				</configuration>
