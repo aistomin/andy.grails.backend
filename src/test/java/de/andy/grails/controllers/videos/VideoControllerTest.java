@@ -34,7 +34,7 @@ class VideoControllerTest extends IntegrationTest {
     /**
      * Count of the videos that we store for test.
      */
-    public static final int EXPECTED_VIDEOS_COUNT = 9;
+    public static final int EXPECTED_VIDEOS_COUNT = 4;
 
     /**
      * Test that we correctly render videos over the API.
@@ -50,7 +50,7 @@ class VideoControllerTest extends IntegrationTest {
         final var videos = response.getBody();
         Assertions.assertEquals(EXPECTED_VIDEOS_COUNT, videos.size());
         Assertions.assertEquals(
-            "Klaus Schindler - Zeit für Träume // Andrej Istomin",
+            "Greensleeves(English traditional) // Andrej Istomin",
             videos.get(0).title()
         );
     }
@@ -60,17 +60,17 @@ class VideoControllerTest extends IntegrationTest {
      */
     @Test
     void testFindById() {
-        final var six = 6;
+        final var two = 2;
         final var response = template().exchange(
-            String.format("/videos/%d", six),
+            String.format("/videos/%d", two),
             HttpMethod.GET,
             null,
             new ParameterizedTypeReference<VideoDto>() { }
         );
         final var video = response.getBody();
-        Assertions.assertEquals(six, video.id());
+        Assertions.assertEquals(two, video.id());
         Assertions.assertEquals(
-            "Greensleeves(English traditional) // Andrej Istomin",
+            "Ferdinando Carulli - Andantino // Andrej Istomin",
             video.title()
         );
     }
