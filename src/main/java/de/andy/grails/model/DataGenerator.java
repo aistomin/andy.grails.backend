@@ -74,88 +74,8 @@ public final class DataGenerator {
             final var zone = ZoneId.systemDefault();
             videos.save(new Video(
                 null,
-                "Klaus Schindler - Zeit für Träume // Andrej Istomin",
-                "The photos in this video were taken by my wife(checkout her channel, by the way:  https://www.youtube.com/channel/UC810...) in Landkreis Dachau(mostly in Schwabhausen and Altomünster). The lovely place where I live.",
-                "https://www.youtube.com/watch?v=lLe-HB1WLO4",
-                "lLe-HB1WLO4",
-                "UC_Xbh9rT4YiFL4U84oalEjQ",
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.AUGUST, 20, 10, 5),
-                    zone
-                ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.AUGUST, 20, 12, 45),
-                    zone
-                )
-            ));
-            videos.save(new Video(
-                null,
-                "Andrej Istomin - Jenny",
-                "The melody composed and performed by Andrej Istomin except those telephone sounds.",
-                "https://www.youtube.com/watch?v=j_Ve3uiVsaA",
-                "j_Ve3uiVsaA",
-                "UC_Xbh9rT4YiFL4U84oalEjQ",
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.AUGUST, 21, 15, 35),
-                    zone
-                ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.AUGUST, 21, 18, 12),
-                    zone
-                )
-            ));
-            videos.save(new Video(
-                null,
-                "Mauro Giuliani - Sonatina op. 71 no. 1 // Andrej Istomin",
-                "A little bit of an autumn mood :) Music piece is composed by Mauro Giuliani, called \"Sonatina op71 n°1\". The pictures in slide-show are the reproductions of different Russian painters.",
-                "https://www.youtube.com/watch?v=DIEBQxqY1yU",
-                "DIEBQxqY1yU",
-                "UC_Xbh9rT4YiFL4U84oalEjQ",
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.NOVEMBER, 11, 9, 28),
-                    zone
-                ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.NOVEMBER, 11, 18, 30),
-                    zone
-                )
-            ));
-            videos.save(new Video(
-                null,
-                "Blackmore's Night - Minstrel Hall // Andrej Istomin",
-                "The piece is composed by Ritchie Blackmore.",
-                "https://www.youtube.com/watch?v=iTVHH1vMIcI",
-                "iTVHH1vMIcI",
-                "UC_Xbh9rT4YiFL4U84oalEjQ",
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.NOVEMBER, 13, 12, 14),
-                    zone
-                ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.NOVEMBER, 13, 15, 56),
-                    zone
-                )
-            ));
-            videos.save(new Video(
-                null,
-                "Fernando Sor - Andante // Andrej Istomin",
-                "This time I'm playing \"Andante\" by Fernando Sor. It is the very first time when I try to create a real video instead of slide show which I did for my previous videos. I hope you like it :)",
-                "https://www.youtube.com/watch?v=kbd7a7j0VOE",
-                "kbd7a7j0VOE",
-                "UC_Xbh9rT4YiFL4U84oalEjQ",
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.DECEMBER, 15, 10, 33),
-                    zone
-                ),
-                ZonedDateTime.of(
-                    LocalDateTime.of(2017, Month.DECEMBER, 15, 16, 42),
-                    zone
-                )
-            ));
-            videos.save(new Video(
-                null,
                 "Greensleeves(English traditional) // Andrej Istomin",
-                "Today I'd like to show you my attempt to play instrumental version of the traditional English song \"Greensleeves\".",
+                "\"Greensleeves\" is a traditional English song. Today I'd like to show you my attempt to play it.",
                 "https://www.youtube.com/watch?v=DDt7N5KxXrM",
                 "DDt7N5KxXrM",
                 "UC_Xbh9rT4YiFL4U84oalEjQ",
