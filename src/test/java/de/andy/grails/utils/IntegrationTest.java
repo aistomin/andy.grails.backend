@@ -42,7 +42,7 @@ public abstract class IntegrationTest {
     @Container
     @ServiceConnection
     protected static final PostgreSQLContainer<?> POSTGRES =
-        new PostgreSQLContainer<>("postgres:17.5");
+        new PostgreSQLContainer<>("postgres:18");
 
     static {
         POSTGRES.start();
