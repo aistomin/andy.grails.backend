@@ -15,7 +15,7 @@
  */
 package de.andy.grails.controllers.configuration;
 
-import de.andy.grails.model.SocialMedia;
+import de.andy.grails.model.WebLinkType;
 import de.andy.grails.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,47 +36,47 @@ class ConfigurationControllerTest extends IntegrationTest {
     public static final int EXPECTED_LINKS_COUNT = 5;
 
     /**
-     * Test that we correctly render our social media links to frontend.
+     * Test that we correctly render our web links to frontend.
      */
     @Test
-    void testSocialMediaLinks() {
+    void testWebLinks() {
         final var response = template().exchange(
-            "/configuration/social/media/links",
+            "/configuration/web/links",
             HttpMethod.GET,
             null,
-            new ParameterizedTypeReference<List<SocialMediaLinkDto>>() {
+            new ParameterizedTypeReference<List<WebLinkDto>>() {
             }
         );
         final var links = response.getBody();
         Assertions.assertEquals(EXPECTED_LINKS_COUNT, links.size());
         final var youtube = links.stream().filter(dto ->
-            dto.socialMedia() == SocialMedia.YOUTUBE
+            dto.type() == WebLinkType.YOUTUBE
         ).findFirst().get();
         Assertions.assertEquals(
             "https://www.youtube.com/@andygrails", youtube.url()
         );
         final var instagram = links.stream().filter(dto ->
-            dto.socialMedia() == SocialMedia.INSTAGRAM
+            dto.type() == WebLinkType.INSTAGRAM
         ).findFirst().get();
         Assertions.assertEquals(
             "https://www.instagram.com/andy.grails/", instagram.url()
         );
         final var facebook = links.stream().filter(dto ->
-            dto.socialMedia() == SocialMedia.FACEBOOK
+            dto.type() == WebLinkType.FACEBOOK
         ).findFirst().get();
         Assertions.assertEquals(
             "https://www.facebook.com/profile.php?id=100074082643728",
             facebook.url()
         );
         final var github = links.stream().filter(dto ->
-            dto.socialMedia() == SocialMedia.GITHUB
+            dto.type() == WebLinkType.ISSUE_TRACKER
         ).findFirst().get();
         Assertions.assertEquals(
-            "https://github.com/aistomin",
+            "https://github.com/aistomin/andy.grails/issues/new/choose",
             github.url()
         );
         final var dev = links.stream().filter(dto ->
-            dto.socialMedia() == SocialMedia.DEVELOPER_WEBSITE
+            dto.type() == WebLinkType.DEVELOPER_WEBSITE
         ).findFirst().get();
         Assertions.assertEquals(
             "https://aistomin.com",

@@ -15,18 +15,18 @@
  */
 package de.andy.grails.controllers.configuration;
 
-import de.andy.grails.model.SocialMedia;
+import de.andy.grails.model.WebLinkType;
 
 /**
- * The link to the social media profile or channel.
+ * The link to some web resource.
  *
  * @param id Link ID.
- * @param socialMedia A type of the social media.
- * @param url Social media channel or profile URL.
+ * @param type A type of the web link.
+ * @param url Web link URL.
  *
  * @since 0.3
  */
-public record SocialMediaLinkDto(
-    Long id, SocialMedia socialMedia, String url
+public record WebLinkDto(
+    Long id, WebLinkType type, String url
 ) {
 }

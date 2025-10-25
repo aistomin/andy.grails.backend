@@ -27,7 +27,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * Social media link entity.
+ * Web link entity.
  *
  * @since 0.3
  */
@@ -36,29 +36,29 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString()
 @Data
-public final class SocialMediaLink {
+public final class WebLink {
 
     /**
      * Ctor.
      */
-    public SocialMediaLink() {
+    public WebLink() {
     }
 
     /**
-     * Social media link ID.
+     * Web link ID.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     /**
-     * A type of the social media.
+     * A type of web link.
      */
     @Enumerated(EnumType.STRING)
-    private SocialMedia socialMedia;
+    private WebLinkType type;
 
     /**
-     * Social media channel or profile URL.
+     * Web link URL.
      */
     private String url;
 }

@@ -15,7 +15,7 @@
  */
 package de.andy.grails.services;
 
-import de.andy.grails.model.SocialMediaLink;
+import de.andy.grails.model.WebLink;
 import java.util.List;
 
 /**
@@ -26,17 +26,17 @@ import java.util.List;
 public interface ConfigurationService {
 
     /**
-     * Find all the existing social media links.
+     * Find all the existing web links.
      *
-     * @return Social media links.
+     * @return Web links.
      */
-    List<SocialMediaLink> findAllSocialMediaLinks();
+    List<WebLink> findAllWebLinks();
 
     /**
-     * Save social media link.
+     * Save web link.
      *
-     * @param link Social media link that needs to be saved.
-     * @return Saved social media link.
+     * @param link Web link that needs to be saved.
+     * @return Saved web link.
      */
-    SocialMediaLink saveSocialMediaLink(SocialMediaLink link);
+    WebLink saveWebLink(WebLink link);
 }

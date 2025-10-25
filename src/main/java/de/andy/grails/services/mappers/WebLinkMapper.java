@@ -15,31 +15,35 @@
  */
 package de.andy.grails.services.mappers;
 
-import de.andy.grails.controllers.configuration.SocialMediaLinkDto;
-import de.andy.grails.model.SocialMediaLink;
+import de.andy.grails.controllers.configuration.WebLinkDto;
+import de.andy.grails.model.WebLink;
+import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 
 /**
- * Social media link mapper using MapStruct.
+ * Web link mapper using MapStruct.
  *
  * @since 0.3
  */
-@Mapper(componentModel = "spring")
-public interface SocialMediaLinkMapper {
+@Mapper(
+    componentModel = "spring",
+    builder = @Builder()
+)
+public interface WebLinkMapper {
 
     /**
-     * Convert social media link entity to DTO.
+     * Web link entity to DTO.
      *
-     * @param link The social media link entity that needs to be converted.
-     * @return Social media link DTO.
+     * @param link The web link entity that needs to be converted.
+     * @return Web link DTO.
      */
-    SocialMediaLinkDto toDto(SocialMediaLink link);
+    WebLinkDto toDto(WebLink link);
 
     /**
-     * Convert social media link DTO to the entity.
+     * CWeb link DTO to the entity.
      *
-     * @param dto The link DTO that needs to be converted to entity.
-     * @return Social media link entity.
+     * @param dto The web link DTO that needs to be converted to entity.
+     * @return Web link entity.
      */
-    SocialMediaLink toEntity(SocialMediaLinkDto dto);
+    WebLink toEntity(WebLinkDto dto);
 }

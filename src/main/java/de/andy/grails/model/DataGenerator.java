@@ -144,48 +144,48 @@ public final class DataGenerator {
      * @return The number of generated entities.
      */
     public Integer generateConfigurationIfNecessary() {
-        log.debug("Generating social media links if necessary .....");
-        if (configuration.findAllSocialMediaLinks().isEmpty()) {
-            log.debug("No social media links found. Let's generate them .....");
-            configuration.saveSocialMediaLink(
-                new SocialMediaLink(
+        log.debug("Generating web links if necessary .....");
+        if (configuration.findAllWebLinks().isEmpty()) {
+            log.debug("No web links found. Let's generate them .....");
+            configuration.saveWebLink(
+                new WebLink(
                     null,
-                    SocialMedia.YOUTUBE,
+                    WebLinkType.YOUTUBE,
                     "https://www.youtube.com/@andygrails"
                 )
             );
-            configuration.saveSocialMediaLink(
-                new SocialMediaLink(
+            configuration.saveWebLink(
+                new WebLink(
                     null,
-                    SocialMedia.INSTAGRAM,
+                    WebLinkType.INSTAGRAM,
                     "https://www.instagram.com/andy.grails/"
                 )
             );
-            configuration.saveSocialMediaLink(
-                new SocialMediaLink(
+            configuration.saveWebLink(
+                new WebLink(
                     null,
-                    SocialMedia.FACEBOOK,
+                    WebLinkType.FACEBOOK,
                     "https://www.facebook.com/profile.php?id=100074082643728"
                 )
             );
-            configuration.saveSocialMediaLink(
-                new SocialMediaLink(
+            configuration.saveWebLink(
+                new WebLink(
                     null,
-                    SocialMedia.GITHUB,
-                    "https://github.com/aistomin"
+                    WebLinkType.ISSUE_TRACKER,
+                    "https://github.com/aistomin/andy.grails/issues/new/choose"
                 )
             );
-            configuration.saveSocialMediaLink(
-                new SocialMediaLink(
+            configuration.saveWebLink(
+                new WebLink(
                     null,
-                    SocialMedia.DEVELOPER_WEBSITE,
+                    WebLinkType.DEVELOPER_WEBSITE,
                     "https://aistomin.com"
                 )
             );
-            log.debug("Social media links were created.");
-            return configuration.findAllSocialMediaLinks().size();
+            log.debug("Web links were created.");
+            return configuration.findAllWebLinks().size();
         } else {
-            log.debug("Social media links already exists.");
+            log.debug("Web links already exists.");
             return 0;
         }
     }
