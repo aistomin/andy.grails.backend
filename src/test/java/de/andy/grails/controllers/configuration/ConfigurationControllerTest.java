@@ -33,7 +33,7 @@ class ConfigurationControllerTest extends IntegrationTest {
     /**
      * Count of the links that we store for test.
      */
-    public static final int EXPECTED_LINKS_COUNT = 4;
+    public static final int EXPECTED_LINKS_COUNT = 5;
 
     /**
      * Test that we correctly render our social media links to frontend.
@@ -74,6 +74,13 @@ class ConfigurationControllerTest extends IntegrationTest {
         Assertions.assertEquals(
             "https://github.com/aistomin",
             github.url()
+        );
+        final var dev = links.stream().filter(dto ->
+            dto.socialMedia() == SocialMedia.DEVELOPER_WEBSITE
+        ).findFirst().get();
+        Assertions.assertEquals(
+            "https://aistomin.com",
+            dev.url()
         );
     }
 }

@@ -58,10 +58,22 @@ public class ConfigurationController {
     }
 
     /**
+     * Get web links to our social media profiles, channels etc.
+     *
+     * @return Web links.
+     */
+    @GetMapping(path = "/web/links")
+    public List<SocialMediaLinkDto> webLinks() {
+        return socialMediaLinks();
+    }
+
+    /**
      * Get social media links to our profiles and channels.
      *
      * @return Social media links.
+     * @deprecated todo: Issue. #172 Remove this API.
      */
+    @Deprecated
     @GetMapping(path = "/social/media/links")
     public List<SocialMediaLinkDto> socialMediaLinks() {
         log.info("ConfigurationController.socialMediaLinks is called .....");

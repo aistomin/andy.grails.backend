@@ -175,6 +175,13 @@ public final class DataGenerator {
                     "https://github.com/aistomin"
                 )
             );
+            configuration.saveSocialMediaLink(
+                new SocialMediaLink(
+                    null,
+                    SocialMedia.DEVELOPER_WEBSITE,
+                    "https://aistomin.com"
+                )
+            );
             log.debug("Social media links were created.");
             return configuration.findAllSocialMediaLinks().size();
         } else {

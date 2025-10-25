@@ -40,5 +40,10 @@ public enum SocialMedia {
     /**
      * Enum entry for the GitHub "social" network.
      */
-    GITHUB
+    GITHUB,
+
+    /**
+     * Enum entry for the developer's website.
+     */
+    DEVELOPER_WEBSITE
 }
