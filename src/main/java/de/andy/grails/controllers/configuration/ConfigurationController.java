@@ -16,7 +16,7 @@
 package de.andy.grails.controllers.configuration;
 
 import de.andy.grails.services.ConfigurationService;
-import de.andy.grails.services.mappers.SocialMediaLinkMapper;
+import de.andy.grails.services.mappers.WebLinkMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,22 +39,22 @@ public class ConfigurationController {
     private final ConfigurationService conf;
 
     /**
-     * Social media link mapper.
+     * Web link mapper.
      */
-    private final SocialMediaLinkMapper socialMediaLinkMapper;
+    private final WebLinkMapper webLinkMapper;
 
     /**
      * Ctor.
      *
      * @param service Configuration service.
-     * @param mapper Social media link mapper.
+     * @param mapper Web link mapper.
      */
     public ConfigurationController(
         final ConfigurationService service,
-        final SocialMediaLinkMapper mapper
+        final WebLinkMapper mapper
     ) {
         this.conf = service;
-        this.socialMediaLinkMapper = mapper;
+        this.webLinkMapper = mapper;
     }
 
     /**
@@ -63,26 +63,14 @@ public class ConfigurationController {
      * @return Web links.
      */
     @GetMapping(path = "/web/links")
-    public List<SocialMediaLinkDto> webLinks() {
-        return socialMediaLinks();
-    }
-
-    /**
-     * Get social media links to our profiles and channels.
-     *
-     * @return Social media links.
-     * @deprecated todo: Issue. #172 Remove this API.
-     */
-    @Deprecated
-    @GetMapping(path = "/social/media/links")
-    public List<SocialMediaLinkDto> socialMediaLinks() {
-        log.info("ConfigurationController.socialMediaLinks is called .....");
-        final var links = conf.findAllSocialMediaLinks()
+    public List<WebLinkDto> webLinks() {
+        log.info("ConfigurationController.webLinks is called .....");
+        final var links = conf.findAllWebLinks()
             .stream()
-            .map(socialMediaLinkMapper::toDto)
+            .map(webLinkMapper::toDto)
             .toList();
         log.info(
-            "ConfigurationController.socialMediaLinks returns {} links.",
+            "ConfigurationController.webLinks returns {} links.",
             links.size()
         );
         return links;

@@ -15,8 +15,8 @@
  */
 package de.andy.grails.services;
 
-import de.andy.grails.model.SocialMediaLink;
-import de.andy.grails.model.SocialMediaLinkRepository;
+import de.andy.grails.model.WebLink;
+import de.andy.grails.model.WebLinkRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -32,47 +32,47 @@ import java.util.List;
 public final class ConfigurationServiceImpl implements ConfigurationService {
 
     /**
-     * Social media links repo.
+     * Web links repo.
      */
-    private final SocialMediaLinkRepository links;
+    private final WebLinkRepository links;
 
     /**
      * Ctor.
      *
-     * @param repo Social media links repo.
+     * @param repo Web links repo.
      */
     public ConfigurationServiceImpl(
-        final SocialMediaLinkRepository repo
+        final WebLinkRepository repo
     ) {
         this.links = repo;
     }
 
     @Override
-    public List<SocialMediaLink> findAllSocialMediaLinks() {
+    public List<WebLink> findAllWebLinks() {
         log.debug(
-            "ConfigurationServiceImpl.findAllSocialMediaLinks is called ....."
+            "ConfigurationServiceImpl.findAllWebLinks is called ....."
         );
         final var result = this.links.findAll()
             .stream()
             .toList();
         log.debug(
-            "ConfigurationServiceImpl.findAllSocialMediaLinks got {} links.",
+            "ConfigurationServiceImpl.findAllWebLinks got {} links.",
             result.size()
         );
         return result;
     }
 
     @Override
-    public SocialMediaLink saveSocialMediaLink(
-        final SocialMediaLink link
+    public WebLink saveWebLink(
+        final WebLink link
     ) {
         log.debug(
-            "ConfigurationServiceImpl.saveSocialMediaLink is called {} .....",
+            "ConfigurationServiceImpl.saveWebLink is called {} .....",
             link
         );
         final var result = links.save(link);
         log.debug(
-            "ConfigurationServiceImpl.saveSocialMediaLink saved: {}.",
+            "ConfigurationServiceImpl.saveWebLink saved: {}.",
             result
         );
         return result;

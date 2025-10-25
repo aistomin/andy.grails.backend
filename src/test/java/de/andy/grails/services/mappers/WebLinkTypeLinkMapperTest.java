@@ -15,9 +15,9 @@
  */
 package de.andy.grails.services.mappers;
 
-import de.andy.grails.controllers.configuration.SocialMediaLinkDto;
-import de.andy.grails.model.SocialMedia;
-import de.andy.grails.model.SocialMediaLink;
+import de.andy.grails.controllers.configuration.WebLinkDto;
+import de.andy.grails.model.WebLinkType;
+import de.andy.grails.model.WebLink;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,16 +25,16 @@ import org.mapstruct.factory.Mappers;
 import java.util.Random;
 
 /**
- * Test for {@link SocialMediaLinkMapper}.
+ * Test for {@link WebLinkMapper}.
  *
  * @since 0.3
  */
-class SocialMediaLinkMapperTest {
+class WebLinkTypeLinkMapperTest {
 
     /**
-     * Social media link mapper to test.
+     * Test web link mapper.
      */
-    private SocialMediaLinkMapper mapper;
+    private WebLinkMapper mapper;
 
     /**
      * Randomiser.
@@ -46,7 +46,7 @@ class SocialMediaLinkMapperTest {
      */
     @BeforeEach
     void setUp() {
-        mapper = Mappers.getMapper(SocialMediaLinkMapper.class);
+        mapper = Mappers.getMapper(WebLinkMapper.class);
     }
 
     /**
@@ -55,13 +55,13 @@ class SocialMediaLinkMapperTest {
     @Test
     void testToDto() {
         Assertions.assertNull(mapper.toDto(null));
-        final var link = new SocialMediaLink();
+        final var link = new WebLink();
         link.setId(rand.nextLong());
-        link.setSocialMedia(SocialMedia.YOUTUBE);
+        link.setType(WebLinkType.YOUTUBE);
         link.setUrl(String.format("https://%d.com", rand.nextLong()));
         final var dto = mapper.toDto(link);
         Assertions.assertEquals(link.getId(), dto.id());
-        Assertions.assertEquals(link.getSocialMedia(), dto.socialMedia());
+        Assertions.assertEquals(link.getType(), dto.type());
         Assertions.assertEquals(link.getUrl(), dto.url());
     }
 
@@ -71,13 +71,14 @@ class SocialMediaLinkMapperTest {
     @Test
     void testToEntity() {
         Assertions.assertNull(mapper.toEntity(null));
-        final var dto = new SocialMediaLinkDto(
-                rand.nextLong(),
-                SocialMedia.INSTAGRAM,
-                String.format("https://%d.com", rand.nextLong()));
+        final var dto = new WebLinkDto(
+            rand.nextLong(),
+            WebLinkType.INSTAGRAM,
+            String.format("https://%d.com", rand.nextLong())
+        );
         final var link = mapper.toEntity(dto);
         Assertions.assertEquals(dto.id(), link.getId());
-        Assertions.assertEquals(dto.socialMedia(), link.getSocialMedia());
+        Assertions.assertEquals(dto.type(), link.getType());
         Assertions.assertEquals(dto.url(), link.getUrl());
     }
 }

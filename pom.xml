@@ -348,8 +348,7 @@
 										<limit>
 											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
-											<!-- TODO: Issue. #172 The coverage must be 100%.-->
-											<minimum>0.90</minimum>
+											<minimum>1.00</minimum>
 										</limit>
 									</limits>
 								</rule>

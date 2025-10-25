@@ -15,35 +15,29 @@
  */
 package de.andy.grails.model;
 
+import org.springframework.data.repository.Repository;
+import java.util.List;
+
 /**
- * Social media enum.
+ * Web link repository.
  *
  * @since 0.3
  */
-public enum SocialMedia {
+public interface WebLinkRepository
+    extends Repository<WebLink, Long> {
 
     /**
-     * Enum entry for the YouTube social network.
+     * Find all the stored web links.
+     *
+     * @return The list of the stored web links.
      */
-    YOUTUBE,
+    List<WebLink> findAll();
 
     /**
-     * Enum entry for the Instagram social network.
+     * Web media link.
+     *
+     * @param link The web link that needs to be saved.
+     * @return Saved web link.
      */
-    INSTAGRAM,
-
-    /**
-     * Enum entry for the Facebook social network.
-     */
-    FACEBOOK,
-
-    /**
-     * Enum entry for the GitHub "social" network.
-     */
-    GITHUB,
-
-    /**
-     * Enum entry for the developer's website.
-     */
-    DEVELOPER_WEBSITE
+    WebLink save(WebLink link);
 }
