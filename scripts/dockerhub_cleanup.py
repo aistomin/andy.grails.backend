@@ -14,6 +14,7 @@ tags = []
 while url:
     r = requests.get(url, headers=headers)
     data = r.json()
+    print(f"Date from Docker Hub: {data}")
     tags.extend(data["results"])
     url = data.get("next")
 tags.sort(key=lambda t: t["last_updated"], reverse=True)
