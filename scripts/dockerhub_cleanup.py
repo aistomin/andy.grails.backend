@@ -4,7 +4,7 @@ import os
 USERNAME = "andygrails"
 REPO = "andy-grails-backend"
 KEEP = 10  # number of latest tags to keep
-TOKEN = os.environ["DOCKERHUB_TOKEN"]
+TOKEN = os.environ["DOCKER_HUB_ACCESS_TOKEN"]
 
 headers = {"Authorization": f"Bearer {TOKEN}"}
 
