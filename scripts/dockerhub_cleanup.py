@@ -4,20 +4,17 @@ import os
 USERNAME = "andygrails"
 REPO = "andy-grails-backend"
 KEEP = 10  # number of latest tags to keep
+TOKEN = os.environ["DOCKER_HUB_ACCESS_TOKEN"]  # personal access token
 
-# This is your Docker Hub personal access token (used as password)
-PASSWORD = os.environ["DOCKER_HUB_ACCESS_TOKEN"]
-
-# Step 1: Exchange Docker Hub token for a *registry-scoped bearer token*
-print("🔑 Getting Docker Hub registry token...")
-auth_url = (
-    f"https://auth.docker.io/token?service=registry.docker.io"
-    f"&scope=repository:{USERNAME}/{REPO}:*"
+# Step 1: Log in to Docker Hub and get JWT
+print("🔑 Logging in to Docker Hub...")
+auth_resp = requests.post(
+    "https://hub.docker.com/v2/users/login/",
+    json={"username": USERNAME, "password": TOKEN},
 )
-auth_resp = requests.get(auth_url, auth=(USERNAME, PASSWORD))
 auth_resp.raise_for_status()
-bearer_token = auth_resp.json()["token"]
-headers = {"Authorization": f"Bearer {bearer_token}"}
+jwt_token = auth_resp.json()["token"]
+headers = {"Authorization": f"JWT {jwt_token}"}
 
 # Step 2: Get tags and clean up
 print(f"🧹 Cleaning up {REPO}...")
@@ -35,6 +32,10 @@ tags.sort(key=lambda t: t["last_updated"], reverse=True)
 
 for tag in tags[KEEP:]:
     tag_name = tag["name"]
+    if tag_name in ("latest", "stable"):
+        print(f"⏭️  Skipping protected tag: {tag_name}")
+        continue
+
     delete_url = f"https://hub.docker.com/v2/repositories/{USERNAME}/{REPO}/tags/{tag_name}/"
     print(f"🗑️  Deleting {REPO}:{tag_name} ... ", end="")
     del_resp = requests.delete(delete_url, headers=headers)
