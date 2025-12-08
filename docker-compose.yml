@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:18
+    image: postgres:18.1
     container_name: andy_grails_db
     environment:
       POSTGRES_DB: ${DB_NAME:-andy_grails}
