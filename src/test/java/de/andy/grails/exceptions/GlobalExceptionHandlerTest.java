@@ -20,28 +20,46 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import de.andy.grails.controllers.test.TestExceptionController;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * Global exception handling tests.
  *
  * @since 0.3
  */
-@WebMvcTest(controllers = TestExceptionController.class)
-@Import(GlobalExceptionHandler.class)
+@SpringBootTest(webEnvironment = WebEnvironment.MOCK)
+@Import({TestExceptionController.class, GlobalExceptionHandler.class})
 class GlobalExceptionHandlerTest {
+
+    /**
+     * Web application context.
+     */
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
     /**
      * Mock MVC.
      */
-    @Autowired
     private MockMvc mockMvc;
+
+    /**
+     * Setup mock MVC.
+     */
+    @BeforeEach
+    void setUp() {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
+            .build();
+    }
 
     /**
      * Check that we correctly handle any uncaught exception.

@@ -19,8 +19,8 @@ import de.andy.grails.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException.NotFound;
 import java.util.List;
 import java.util.Map;
 
@@ -41,13 +41,10 @@ class VideoControllerTest extends IntegrationTest {
      */
     @Test
     void testListVideos() {
-        final var response = template().exchange(
-            "/videos",
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<List<VideoDto>>() { }
-        );
-        final var videos = response.getBody();
+        final var videos = restClient().get()
+            .uri("/videos")
+            .retrieve()
+            .body(new ParameterizedTypeReference<List<VideoDto>>() { });
         Assertions.assertEquals(EXPECTED_VIDEOS_COUNT, videos.size());
         Assertions.assertEquals(
             "Greensleeves(English traditional) // Andrej Istomin",
@@ -61,13 +58,10 @@ class VideoControllerTest extends IntegrationTest {
     @Test
     void testFindById() {
         final var two = 2;
-        final var response = template().exchange(
-            String.format("/videos/%d", two),
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<VideoDto>() { }
-        );
-        final var video = response.getBody();
+        final var video = restClient().get()
+            .uri(String.format("/videos/%d", two))
+            .retrieve()
+            .body(new ParameterizedTypeReference<VideoDto>() { });
         Assertions.assertEquals(two, video.id());
         Assertions.assertEquals(
             "Ferdinando Carulli - Andantino // Andrej Istomin",
@@ -76,19 +70,26 @@ class VideoControllerTest extends IntegrationTest {
     }
 
     /**
-     * Test that we return 404 when video is not found.
+     * Test that we return 404 when the video is not found.
      */
     @Test
     void testFindByIdNotFound() {
-        final var response = template().exchange(
-            String.format("/videos/%d", Integer.MAX_VALUE),
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<Map>() {
+        final var exception = Assertions.assertThrows(
+            NotFound.class,
+            () -> restClient().get()
+                .uri(String.format("/videos/%d", Integer.MAX_VALUE))
+                .retrieve()
+                .body(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+        );
+        Assertions.assertEquals(
+            HttpStatus.NOT_FOUND, exception.getStatusCode()
+        );
+        final var message = exception.getResponseBodyAs(
+            new ParameterizedTypeReference<Map<String, Object>>() {
             }
         );
-        Assertions.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        final var message = response.getBody();
+        Assertions.assertNotNull(message);
         Assertions.assertEquals(
             HttpStatus.NOT_FOUND.value(), message.get("status")
         );

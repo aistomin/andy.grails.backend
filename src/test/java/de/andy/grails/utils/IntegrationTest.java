@@ -15,10 +15,10 @@
  */
 package de.andy.grails.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.web.client.RestClient;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 
@@ -31,10 +31,10 @@ import org.testcontainers.junit.jupiter.Container;
 public abstract class IntegrationTest {
 
     /**
-     * Test REST template.
+     * Local server port.
      */
-    @Autowired
-    private TestRestTemplate template;
+    @LocalServerPort
+    private int port;
 
     /**
      * Postgres container.
@@ -49,11 +49,13 @@ public abstract class IntegrationTest {
     }
 
     /**
-     * Get test REST template.
+     * Get test REST client.
      *
-     * @return Test REST template.
+     * @return Test REST client.
      */
-    protected TestRestTemplate template() {
-        return this.template;
+    protected RestClient restClient() {
+        return RestClient.builder()
+            .baseUrl("http://localhost:" + port)
+            .build();
     }
 }
