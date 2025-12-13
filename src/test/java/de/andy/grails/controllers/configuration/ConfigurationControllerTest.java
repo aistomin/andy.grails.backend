@@ -20,7 +20,6 @@ import de.andy.grails.utils.IntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import java.util.List;
 
 /**
@@ -40,14 +39,11 @@ class ConfigurationControllerTest extends IntegrationTest {
      */
     @Test
     void testWebLinks() {
-        final var response = template().exchange(
-            "/configuration/web/links",
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<List<WebLinkDto>>() {
-            }
-        );
-        final var links = response.getBody();
+        final var links = restClient().get()
+            .uri("/configuration/web/links")
+            .retrieve()
+            .body(new ParameterizedTypeReference<List<WebLinkDto>>() {
+            });
         Assertions.assertEquals(EXPECTED_LINKS_COUNT, links.size());
         final var youtube = links.stream().filter(dto ->
             dto.type() == WebLinkType.YOUTUBE
