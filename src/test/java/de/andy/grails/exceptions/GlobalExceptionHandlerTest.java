@@ -28,6 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -38,6 +39,14 @@ import org.springframework.web.context.WebApplicationContext;
  * @since 0.3
  */
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
+@TestPropertySource(properties = {
+    "spring.autoconfigure.exclude="
+        + "org.springframework.boot.autoconfigure.jdbc."
+        + "DataSourceAutoConfiguration,"
+        + "org.springframework.boot.autoconfigure.orm.jpa."
+        + "HibernateJpaAutoConfiguration",
+    "spring.profiles.active=test"
+})
 @Import({TestExceptionController.class, GlobalExceptionHandler.class})
 class GlobalExceptionHandlerTest {
 
