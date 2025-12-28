@@ -18,9 +18,8 @@ package de.andy.grails.model;
 import de.andy.grails.services.ConfigurationService;
 import de.andy.grails.services.VideoService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
-import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
@@ -198,12 +197,16 @@ public final class DataGenerator {
      * @return File content.
      */
     public String readFile(final String path) {
-        try {
-            return FileUtils.readFileToString(
-                new File(
-                    getClass().getClassLoader().getResource(path).getFile()
-                ),
-                "UTF-8"
+        try (
+            var stream = getClass().getClassLoader().getResourceAsStream(path)
+        ) {
+            if (stream == null) {
+                throw new IllegalArgumentException(
+                    "Resource not found: %s".formatted(path)
+                );
+            }
+            return new String(
+                stream.readAllBytes(), StandardCharsets.UTF_8
             );
         } catch (final Exception error) {
             log.error("Failed to read file: {}", path, error);
