@@ -29,6 +29,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 class DataGeneratorTest extends IntegrationTest {
 
     /**
+     * Expected length of the text file.
+     */
+    private static final int EXPECTED_TEXT_LENGTH = 2428;
+
+    /**
      * Data generator.
      */
     @Autowired
@@ -39,7 +44,7 @@ class DataGeneratorTest extends IntegrationTest {
      * once.
      */
     @Test
-    void generateVideosIfNecessary() {
+    void testGenerateVideosIfNecessary() {
         Assertions.assertEquals(
             0, generator.generateVideosIfNecessary()
         );
@@ -50,9 +55,24 @@ class DataGeneratorTest extends IntegrationTest {
      * data only once.
      */
     @Test
-    void generateConfigurationIfNecessary() {
+    void testGenerateConfigurationIfNecessary() {
         Assertions.assertEquals(
             0, generator.generateConfigurationIfNecessary()
+        );
+    }
+
+    /**
+     * Check that we correctly read a text file from resources.
+     */
+    @Test
+    void testReadFile() {
+        final var text = generator.readFile("videos/sarabande.txt");
+        Assertions.assertTrue(text.startsWith("Lorem ipsum dolor sit amet"));
+        Assertions.assertTrue(text.endsWith("Quisque ac faucibus tortor.\n"));
+        Assertions.assertEquals(EXPECTED_TEXT_LENGTH, text.length());
+        Assertions.assertThrows(
+            RuntimeException.class,
+            () -> generator.readFile("non-existing.txt")
         );
     }
 }

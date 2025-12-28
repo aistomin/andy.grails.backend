@@ -21,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
@@ -198,7 +197,7 @@ public final class DataGenerator {
      * @param path File path.
      * @return File content.
      */
-    private String readFile(final String path) {
+    public String readFile(final String path) {
         try {
             return FileUtils.readFileToString(
                 new File(
@@ -206,7 +205,8 @@ public final class DataGenerator {
                 ),
                 "UTF-8"
             );
-        } catch (final IOException error) {
+        } catch (final Exception error) {
+            log.error("Failed to read file: {}", path, error);
             throw new RuntimeException(error);
         }
     }
