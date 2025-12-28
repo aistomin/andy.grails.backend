@@ -46,9 +46,13 @@ class VideoControllerTest extends IntegrationTest {
             .retrieve()
             .body(new ParameterizedTypeReference<List<VideoDto>>() { });
         Assertions.assertEquals(EXPECTED_VIDEOS_COUNT, videos.size());
+        final var video = videos.get(0);
         Assertions.assertEquals(
             "Greensleeves(English traditional) // Andrej Istomin",
-            videos.get(0).title()
+            video.title()
+        );
+        Assertions.assertTrue(
+            video.description().startsWith("Maecenas justo enim,")
         );
     }
 
@@ -66,6 +70,9 @@ class VideoControllerTest extends IntegrationTest {
         Assertions.assertEquals(
             "Ferdinando Carulli - Andantino // Andrej Istomin",
             video.title()
+        );
+        Assertions.assertTrue(
+            video.description().endsWith("vel turpis egestas ullamcorper.\n")
         );
     }
 

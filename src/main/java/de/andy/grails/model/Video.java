@@ -15,6 +15,7 @@
  */
 package de.andy.grails.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,6 +39,11 @@ import java.time.ZonedDateTime;
 public final class Video {
 
     /**
+     * Long text length.
+     */
+    private static final int LONG_TEXT_LENGTH = 10_000;
+
+    /**
      * Ctor.
      */
     public Video() {
@@ -58,6 +64,7 @@ public final class Video {
     /**
      * Description.
      */
+    @Column(length = LONG_TEXT_LENGTH)
     private String description;
 
     /**
