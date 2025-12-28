@@ -18,7 +18,9 @@ package de.andy.grails.model;
 import de.andy.grails.services.ConfigurationService;
 import de.andy.grails.services.VideoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
@@ -33,7 +35,6 @@ import java.time.ZonedDateTime;
 @Slf4j
 @SuppressWarnings({
     "checkstyle:MagicNumber",
-    "checkstyle:LineLength",
     "checkstyle:MethodLength"
 })
 public final class DataGenerator {
@@ -75,7 +76,7 @@ public final class DataGenerator {
             videos.save(new Video(
                 null,
                 "Greensleeves(English traditional) // Andrej Istomin",
-                "\"Greensleeves\" is a traditional English song. Today I'd like to show you my attempt to play it.",
+                readFile("videos/greensleeves.txt"),
                 "https://www.youtube.com/watch?v=DDt7N5KxXrM",
                 "DDt7N5KxXrM",
                 "UC_Xbh9rT4YiFL4U84oalEjQ",
@@ -91,7 +92,7 @@ public final class DataGenerator {
             videos.save(new Video(
                 null,
                 "Ferdinando Carulli - Andantino // Andrej Istomin",
-                "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
+                readFile("videos/andantino.txt"),
                 "https://www.youtube.com/watch?v=Hd05dNHYqAw",
                 "Hd05dNHYqAw",
                 "UC_Xbh9rT4YiFL4U84oalEjQ",
@@ -107,7 +108,7 @@ public final class DataGenerator {
             videos.save(new Video(
                 null,
                 "Johann Pachelbel - Sarabande // Andrej Istomin",
-                "This summer is really hot here in Germany. I decided to create this small summer video where I'm trying to play nice light piece called \"Andantino\" by Ferdinando Carulli (1770-1841).",
+                readFile("videos/sarabande.txt"),
                 "https://www.youtube.com/watch?v=hRvXB_gnR84",
                 "hRvXB_gnR84",
                 "UC_Xbh9rT4YiFL4U84oalEjQ",
@@ -120,7 +121,7 @@ public final class DataGenerator {
             videos.save(new Video(
                 null,
                 "J. S. Bach - Bourrée // Andrej Istomin",
-                "Thanks for watching this video. If you like it, please subscribe to my channel, comment the videos, \"like\" them and share with your friends.",
+                readFile("videos/bourree.txt"),
                 "https://www.youtube.com/watch?v=AjQBAQ1jzwc",
                 "AjQBAQ1jzwc",
                 "UC_Xbh9rT4YiFL4U84oalEjQ",
@@ -187,6 +188,26 @@ public final class DataGenerator {
         } else {
             log.debug("Web links already exists.");
             return 0;
+        }
+    }
+
+    /**
+     * Read text file from classpath.
+     *
+     * @param path File path.
+     * @return File content.
+     */
+    public String readFile(final String path) {
+        try {
+            return FileUtils.readFileToString(
+                new File(
+                    getClass().getClassLoader().getResource(path).getFile()
+                ),
+                "UTF-8"
+            );
+        } catch (final Exception error) {
+            log.error("Failed to read file: {}", path, error);
+            throw new RuntimeException(error);
         }
     }
 }
