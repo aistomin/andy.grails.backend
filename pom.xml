@@ -14,7 +14,7 @@
 		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<lombok.version>1.18.38</lombok.version>
-		<testcontainers.version>1.21.3</testcontainers.version>
+		<testcontainers.version>1.21.4</testcontainers.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
 		<linkXRef>false</linkXRef>
 	</properties>
