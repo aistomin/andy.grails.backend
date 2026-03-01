@@ -25,7 +25,7 @@ To build and test the app, run: `./mvnw clean install package javadoc:javadoc`
 
 To start the app, you have two options:
 
-1. **Recommended (ensures fresh build every time):**
+1. **Recommended (ensures a fresh build every time):**
 
    ```bash
    ./start.sh
