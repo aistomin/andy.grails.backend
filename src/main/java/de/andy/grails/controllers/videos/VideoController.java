@@ -85,11 +85,10 @@ public class VideoController {
     public VideoDto findById(final @PathVariable long id) {
         log.info("VideoController.findById is called with ID = {} .....", id);
         final var found = this.videos.findById(id);
-        if (found == null) {
-            log.info("Video with ID = {} not found.", id);
-            throw new NotFoundException("Video not found");
-        }
-        final var video = mapper.toDto(found);
+        final var video = mapper.toDto(found.orElseThrow(() -> {
+            log.error("Video with ID = {} not found.", id);
+            return new NotFoundException("Video not found");
+        }));
         log.info("VideoController.findById returns {}.", video);
         return video;
     }

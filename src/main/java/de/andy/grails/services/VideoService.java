@@ -17,6 +17,7 @@ package de.andy.grails.services;
 
 import de.andy.grails.model.Video;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Video's service.
@@ -38,7 +39,7 @@ public interface VideoService {
      * @param id The ID.
      * @return Found video.
      */
-    Video findById(long id);
+    Optional<Video> findById(long id);
 
     /**
      * Save video.
