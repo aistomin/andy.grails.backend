@@ -20,6 +20,7 @@ import de.andy.grails.model.VideoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Temporary implementation of the {@link VideoService}. For now, we just work
@@ -60,11 +61,11 @@ public final class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Video findById(final long id) {
+    public Optional<Video> findById(final long id) {
         log.debug(
             "VideoServiceImpl.findById is called with ID = {} .....", id
         );
-        final var result = videos.findById(id).orElse(null);
+        final var result = videos.findById(id);
         log.debug(
             "VideoServiceImpl.findById result: {}.", result
         );
