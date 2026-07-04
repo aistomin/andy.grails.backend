@@ -35,6 +35,6 @@ public final class ServletInitializer extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(
         final SpringApplicationBuilder builder
     ) {
-        return super.configure(builder);
+        return builder.sources(Application.class);
     }
 }

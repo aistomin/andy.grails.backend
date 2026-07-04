@@ -15,6 +15,7 @@
  */
 package de.andy.grails;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -27,7 +28,8 @@ class ServletInitializerTest {
 
     @Test
     void configure() {
-        final var initializer = new ServletInitializer();
-        initializer.configure(new SpringApplicationBuilder(Object.class));
+        final var result = new ServletInitializer()
+            .configure(new SpringApplicationBuilder());
+        Assertions.assertNotNull(result);
     }
 }
