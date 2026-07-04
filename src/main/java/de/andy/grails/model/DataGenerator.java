@@ -26,7 +26,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 /**
- * Video repository.
+ * Generates initial seed data (videos and web links) on first application
+ * startup if none already exist in the database.
  *
  * @since 0.3
  */
