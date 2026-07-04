@@ -11,7 +11,7 @@ COPY . .
 RUN ./mvnw clean package -DskipTests
 
 # ---- Runtime Image ----
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jre
 
 # Set the working directory
 WORKDIR /app
