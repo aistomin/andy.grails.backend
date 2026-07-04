@@ -23,8 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Temporary implementation of the {@link VideoService}. For now, we just work
- * with some hardcoded values that we store in the static variable.
+ * Implementation of {@link VideoService} backed by {@link VideoRepository}.
  *
  * @since 0.1
  */
