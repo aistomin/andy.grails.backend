@@ -15,6 +15,7 @@
  */
 package de.andy.grails.exceptions;
 
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -53,6 +54,21 @@ public final class GlobalExceptionHandler {
             HttpStatus.INTERNAL_SERVER_ERROR,
             "Internal server error occurred."
         );
+    }
+
+    /**
+     * Handle constraint violation exceptions (e.g. invalid path variables).
+     *
+     * @param ex The constraint violation exception.
+     * @return Error response.
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorResponse handleConstraintViolationException(
+        final ConstraintViolationException ex
+    ) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     /**
