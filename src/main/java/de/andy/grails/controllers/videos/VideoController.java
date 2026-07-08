@@ -18,7 +18,9 @@ package de.andy.grails.controllers.videos;
 import de.andy.grails.exceptions.NotFoundException;
 import de.andy.grails.services.VideoService;
 import de.andy.grails.services.mappers.VideoMapper;
+import jakarta.validation.constraints.Min;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/videos")
+@Validated
 @Slf4j
 public class VideoController {
 
@@ -82,7 +85,7 @@ public class VideoController {
      * @return Found video.
      */
     @GetMapping("/{id}")
-    public VideoDto findById(final @PathVariable long id) {
+    public VideoDto findById(final @Min(1) @PathVariable long id) {
         log.info("VideoController.findById is called with ID = {} .....", id);
         final var found = this.videos.findById(id);
         final var video = mapper.toDto(found.orElseThrow(() -> {

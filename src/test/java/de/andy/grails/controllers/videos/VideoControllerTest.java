@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +74,42 @@ class VideoControllerTest extends IntegrationTest {
         );
         Assertions.assertTrue(
             video.description().endsWith("vel turpis egestas ullamcorper.\n")
+        );
+    }
+
+    /**
+     * Test that we return 400 when the video ID is negative.
+     */
+    @Test
+    void testFindByIdNegative() {
+        final var exception = Assertions.assertThrows(
+            BadRequest.class,
+            () -> restClient().get()
+                .uri("/videos/-1")
+                .retrieve()
+                .body(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+        );
+        Assertions.assertEquals(
+            HttpStatus.BAD_REQUEST, exception.getStatusCode()
+        );
+    }
+
+    /**
+     * Test that we return 400 when the video ID is zero.
+     */
+    @Test
+    void testFindByIdZero() {
+        final var exception = Assertions.assertThrows(
+            BadRequest.class,
+            () -> restClient().get()
+                .uri("/videos/0")
+                .retrieve()
+                .body(new ParameterizedTypeReference<Map<String, Object>>() {
+                })
+        );
+        Assertions.assertEquals(
+            HttpStatus.BAD_REQUEST, exception.getStatusCode()
         );
     }
 
