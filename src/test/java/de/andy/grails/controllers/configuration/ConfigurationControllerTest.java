@@ -47,33 +47,33 @@ class ConfigurationControllerTest extends IntegrationTest {
         Assertions.assertEquals(EXPECTED_LINKS_COUNT, links.size());
         final var youtube = links.stream().filter(dto ->
             dto.type() == WebLinkType.YOUTUBE
-        ).findFirst().get();
+        ).findFirst().orElseThrow();
         Assertions.assertEquals(
             "https://www.youtube.com/@andygrails", youtube.url()
         );
         final var instagram = links.stream().filter(dto ->
             dto.type() == WebLinkType.INSTAGRAM
-        ).findFirst().get();
+        ).findFirst().orElseThrow();
         Assertions.assertEquals(
             "https://www.instagram.com/andy.grails/", instagram.url()
         );
         final var facebook = links.stream().filter(dto ->
             dto.type() == WebLinkType.FACEBOOK
-        ).findFirst().get();
+        ).findFirst().orElseThrow();
         Assertions.assertEquals(
             "https://www.facebook.com/profile.php?id=100074082643728",
             facebook.url()
         );
         final var github = links.stream().filter(dto ->
             dto.type() == WebLinkType.ISSUE_TRACKER
-        ).findFirst().get();
+        ).findFirst().orElseThrow();
         Assertions.assertEquals(
             "https://github.com/aistomin/andy.grails/issues/new/choose",
             github.url()
         );
         final var dev = links.stream().filter(dto ->
             dto.type() == WebLinkType.DEVELOPER_WEBSITE
-        ).findFirst().get();
+        ).findFirst().orElseThrow();
         Assertions.assertEquals(
             "https://aistomin.com",
             dev.url()
