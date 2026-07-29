@@ -40,7 +40,7 @@ public interface WebLinkMapper {
     WebLinkDto toDto(WebLink link);
 
     /**
-     * CWeb link DTO to the entity.
+     * Web link DTO to the entity.
      *
      * @param dto The web link DTO that needs to be converted to entity.
      * @return Web link entity.
