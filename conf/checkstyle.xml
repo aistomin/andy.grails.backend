@@ -106,7 +106,7 @@
         <module name="JavadocMethod"/>
         <module name="JavadocType"/>
         <module name="JavadocVariable"/>
-        <module name="JavadocStyle"/>
+        <module name="SummaryJavadoc"/>
         <module name="MissingJavadocMethod"/>
         <module name="MissingJavadocType"/>
 
