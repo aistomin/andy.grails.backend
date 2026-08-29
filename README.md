@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/aistomin/andy.grails.backend/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/aistomin/andy.grails.backend/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/aistomin/andy.grails.backend/graph/badge.svg?token=WZFAART6QM)](https://codecov.io/gh/aistomin/andy.grails.backend)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 This is the backend service for the [Andy Grails' website](https://andy-grails.de/).  
 It is a Java Spring Boot application providing RESTful APIs to serve music data, media, and metadata consumed by the frontend.
@@ -64,3 +65,10 @@ request, please run the full Maven build:
 
 **Note:** We use Testcontainers — make sure Docker is running when you build.
 Also, check the [system requirements](#system-requirements).
+
+## License
+
+This project is licensed under the [Apache License, Version 2.0](LICENSE).
+
+Every source file carries the same grant in its header, alongside
+`Copyright (c) 2025 Andrej Istomin`.

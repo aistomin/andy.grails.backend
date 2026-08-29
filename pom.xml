@@ -24,18 +24,25 @@
 	<packaging>war</packaging>
 	<name>andy.grails.backend</name>
 	<description>Andy Grails' Website. Backend</description>
-	<url/>
+	<url>https://github.com/aistomin/andy.grails.backend</url>
 	<licenses>
-		<license/>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<name>Andrej Istomin</name>
+			<email>contact@aistomin.com</email>
+			<organization>Andrej Istomin</organization>
+			<organizationUrl>https://aistomin.com/</organizationUrl>
+		</developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>scm:git:github.com:aistomin/andy.grails.backend.git</connection>
+		<developerConnection>scm:git:github.com:aistomin/andy.grails.backend.git</developerConnection>
+		<url>https://github.com/aistomin/andy.grails.backend</url>
 	</scm>
 	<dependencies>
 		<dependency>
