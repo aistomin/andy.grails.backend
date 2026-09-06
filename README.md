@@ -17,7 +17,7 @@ For the full project including frontend and main repository, visit:
 > For backend development, if you want to run the app or tests directly on your computer:
 >
 > - **Docker Desktop** 4.42.1 or higher
-> - **JDK** 21 or higher
+> - **JDK** 25 or higher
 > - **Apache Maven** 3.9.8 or higher
 
 ## How to Test and Run the App
