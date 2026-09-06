@@ -1,5 +1,5 @@
-# Use the official OpenJDK 21 image as base
-FROM eclipse-temurin:21-jdk AS builder
+# Use the official OpenJDK 25 image as base
+FROM eclipse-temurin:25-jdk AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN ./mvnw clean package -DskipTests
 
 # ---- Runtime Image ----
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:25-jre
 
 # Set the working directory
 WORKDIR /app
