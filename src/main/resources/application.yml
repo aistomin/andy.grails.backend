@@ -3,6 +3,9 @@ spring:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:andys}
     username: ${DB_USER:root}
     password: ${DB_PASSWORD:root}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
   jpa:
     open-in-view: false
   application.name: andy.grails.backend
