@@ -1,8 +1,0 @@
-spring:
-  config:
-    activate:
-      on-profile: prod
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: update # TODO: Issue #153. Implement proper DB migration

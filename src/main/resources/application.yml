@@ -8,6 +8,8 @@ spring:
       minimum-idle: 2
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: update # TODO: Issue #153. Implement proper DB migration
   application.name: andy.grails.backend
 management:
   endpoints:
