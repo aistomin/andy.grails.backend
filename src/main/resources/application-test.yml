@@ -3,7 +3,6 @@ spring:
     activate:
       on-profile: test
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: create-drop
     properties:
