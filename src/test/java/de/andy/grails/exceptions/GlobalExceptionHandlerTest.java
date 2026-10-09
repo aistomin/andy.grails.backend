@@ -19,7 +19,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import de.andy.grails.controllers.test.TestExceptionController;
 import de.andy.grails.utils.IntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +28,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
@@ -36,7 +37,10 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * @since 0.3
  */
-@Import({TestExceptionController.class, GlobalExceptionHandler.class})
+@Import({
+    GlobalExceptionHandlerTest.FailingController.class,
+    GlobalExceptionHandler.class
+})
 class GlobalExceptionHandlerTest extends IntegrationTest {
 
     /**
@@ -66,7 +70,7 @@ class GlobalExceptionHandlerTest extends IntegrationTest {
      */
     @Test
     void testHandleUncaughtException() throws Exception {
-        mockMvc.perform(get("/test/error"))
+        mockMvc.perform(get("/failing-endpoint"))
             .andExpect(status().isInternalServerError())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(
@@ -76,5 +80,31 @@ class GlobalExceptionHandlerTest extends IntegrationTest {
                 jsonPath("$.message")
                     .value("Internal server error occurred.")
             );
+    }
+
+    /**
+     * Controller that always blows up, so that the handler has something to
+     * handle.
+     *
+     * @since 1.0
+     */
+    @RestController
+    static final class FailingController {
+
+        /**
+         * Ctor.
+         */
+        FailingController() {
+        }
+
+        /**
+         * Simulate an unhandled error in the controller.
+         *
+         * @return Nothing, the call always fails.
+         */
+        @GetMapping("/failing-endpoint")
+        String throwError() {
+            throw new IllegalStateException("Simulated failure");
+        }
     }
 }
