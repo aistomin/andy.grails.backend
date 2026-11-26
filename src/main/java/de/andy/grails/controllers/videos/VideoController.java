@@ -89,7 +89,7 @@ public class VideoController {
         log.info("VideoController.findById is called with ID = {} .....", id);
         final var found = this.videos.findById(id);
         final var video = mapper.toDto(found.orElseThrow(() -> {
-            log.error("Video with ID = {} not found.", id);
+            log.warn("Video with ID = {} not found.", id);
             return new NotFoundException("Video not found");
         }));
         log.info("VideoController.findById returns {}.", video);
