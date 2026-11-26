@@ -17,11 +17,16 @@ package de.andy.grails.exceptions;
 
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
  * Global exception handler.
@@ -30,12 +35,51 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 @Slf4j
-public final class GlobalExceptionHandler {
+public final class GlobalExceptionHandler
+    extends ResponseEntityExceptionHandler {
 
     /**
      * Ctor.
      */
     public GlobalExceptionHandler() {
+        super();
+    }
+
+    /**
+     * Answer the framework's own request errors (unknown URL, wrong HTTP
+     * method, malformed parameter, etc.) with the status the framework
+     * assigned to them.
+     *
+     * A request we reject is the caller's mistake, not ours: only the server
+     * errors are logged as errors, so that the error log contains nothing but
+     * the problems that need our action.
+     *
+     * @param ex The exception raised by the framework.
+     * @param body The body suggested by the framework, we replace it.
+     * @param headers The response headers.
+     * @param code The HTTP status assigned by the framework.
+     * @param request The current request.
+     * @return Error response.
+     */
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(
+        final Exception ex,
+        final Object body,
+        final HttpHeaders headers,
+        final HttpStatusCode code,
+        final WebRequest request
+    ) {
+        final var status = HttpStatus.valueOf(code.value());
+        if (status.is5xxServerError()) {
+            log.error("Request failed with {}.", status, ex);
+        } else {
+            log.warn("Request rejected with {}: {}", status, ex.getMessage());
+        }
+        return new ResponseEntity<>(
+            new ErrorResponse(status, status.getReasonPhrase()),
+            headers,
+            status
+        );
     }
 
     /**
