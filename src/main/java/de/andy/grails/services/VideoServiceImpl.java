@@ -50,7 +50,7 @@ public final class VideoServiceImpl implements VideoService {
         log.debug(
             "VideoServiceImpl.findAll is called ....."
         );
-        final var result = videos.findAll()
+        final var result = videos.findAllByOrderByCreatedAtDesc()
             .stream()
             .toList();
         log.debug(

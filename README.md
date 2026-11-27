@@ -22,7 +22,7 @@ For the full project including frontend and main repository, visit:
 
 ## How to Test and Run the App
 
-To build and test the app, run: `./mvnw clean install package javadoc:javadoc`
+To build and test the app, run: `./mvnw clean install javadoc:javadoc`
 
 To start the app, you have two options:
 
@@ -60,7 +60,7 @@ branch if they look correct. To avoid frustration, before sending us your pull
 request, please run the full Maven build:
 
 ```bash
-./mvnw clean install package javadoc:javadoc
+./mvnw clean install javadoc:javadoc
 ```
 
 **Note:** We use Testcontainers — make sure Docker is running when you build.

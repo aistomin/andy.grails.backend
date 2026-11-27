@@ -27,11 +27,11 @@ import java.util.Optional;
 public interface VideoRepository extends Repository<Video, Long> {
 
     /**
-     * Find all the stored videos.
+     * Find all the stored videos, the newest first.
      *
      * @return The list of the stored videos.
      */
-    List<Video> findAll();
+    List<Video> findAllByOrderByCreatedAtDesc();
 
     /**
      * Save video.
