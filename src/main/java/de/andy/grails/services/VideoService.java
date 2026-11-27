@@ -27,7 +27,7 @@ import java.util.Optional;
 public interface VideoService {
 
     /**
-     * Find all the existing videos.
+     * Find all the existing videos, the newest first.
      *
      * @return Videos.
      */

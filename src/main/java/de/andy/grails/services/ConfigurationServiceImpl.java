@@ -22,8 +22,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Temporary implementation of the {@link VideoService}. For now, we just work
- * with some hardcoded values that we store in the static variable.
+ * Implementation of {@link ConfigurationService} backed by
+ * {@link WebLinkRepository}.
  *
  * @since 0.1
  */

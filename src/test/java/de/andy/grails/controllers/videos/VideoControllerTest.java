@@ -38,7 +38,7 @@ class VideoControllerTest extends IntegrationTest {
     public static final int EXPECTED_VIDEOS_COUNT = 4;
 
     /**
-     * Test that we correctly render videos over the API.
+     * Test that we correctly render videos over the API, the newest first.
      */
     @Test
     void testListVideos() {
@@ -47,13 +47,17 @@ class VideoControllerTest extends IntegrationTest {
             .retrieve()
             .body(new ParameterizedTypeReference<List<VideoDto>>() { });
         Assertions.assertEquals(EXPECTED_VIDEOS_COUNT, videos.size());
-        final var video = videos.get(0);
         Assertions.assertEquals(
-            "Greensleeves(English traditional) // Andrej Istomin",
-            video.title()
+            List.of(
+                "Johann Pachelbel - Sarabande // Andrej Istomin",
+                "J. S. Bach - Bourrée // Andrej Istomin",
+                "Ferdinando Carulli - Andantino // Andrej Istomin",
+                "Greensleeves(English traditional) // Andrej Istomin"
+            ),
+            videos.stream().map(VideoDto::title).toList()
         );
         Assertions.assertTrue(
-            video.description().startsWith("Maecenas justo enim,")
+            videos.getLast().description().startsWith("Maecenas justo enim,")
         );
     }
 
